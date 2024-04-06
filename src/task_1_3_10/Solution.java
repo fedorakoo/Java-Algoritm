@@ -1,16 +1,16 @@
-package task_1_3_10;
+package org.task_1_3_10;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Solution
 {
-    private Solution() {
+    Solution() {
 
     }
     public static String infixToPostfix(String line) {
         Deque<Character> stackArithmeticOperation = new ArrayDeque<>();
-        String resultLine = "";
+        StringBuilder bld = new StringBuilder();
         for(int i = 0; i < line.length(); i++) {
             if(isSymbolOperation(line.charAt(i))) {
                 if(!stackArithmeticOperation.isEmpty() &&
@@ -19,8 +19,7 @@ public class Solution
                     while(!stackArithmeticOperation.isEmpty() &&
                           getOperationPriority(line.charAt(i))
                                   >= getOperationPriority(stackArithmeticOperation.peek())) {
-                        resultLine = resultLine +
-                                stackArithmeticOperation.pop() + " ";
+                        bld.append(stackArithmeticOperation.pop() + " ");
                     }
                 }
                 stackArithmeticOperation.push(line.charAt(i));
@@ -30,14 +29,14 @@ public class Solution
                 while(i + numberSize < line.length() && isSymbolNumber(line.charAt(i + numberSize))) {
                     numberSize++;
                 }
-                resultLine = resultLine + line.substring(i, i + numberSize) + " ";
-                i += numberSize - 1;
+                bld.append(line.substring(i, i + numberSize) + " ");
+                i = i + numberSize - 1;
             }
         }
         while(!stackArithmeticOperation.isEmpty()) {
-            resultLine = resultLine +
-                    stackArithmeticOperation.pop() + " ";
+            bld.append(stackArithmeticOperation.pop() + " ");
         }
+        String resultLine = bld.toString();
         return resultLine;
     }
 
