@@ -9,8 +9,7 @@ public class Main
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        Solution solution = new Solution();
         String inputLine = in.nextLine();
-        logger.info(solution.infixToPostfix(inputLine));
+        logger.info(Solution.toPostfix(inputLine));
     }
 }
