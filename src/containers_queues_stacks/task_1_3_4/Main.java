@@ -14,6 +14,7 @@ public class Main {
     }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        System.out.println("Условие задания: Напишите клиент стека Parentheses.py который читает поток символов из стандартного ввода и использует стек для определения правильности балансировки скобок.");
         System.out.print("Введите строку, состоящую из скобок, необходимую к проверке: ");
         String line = in.nextLine();
         if(isInputLineCorrect(line)) {
