@@ -46,7 +46,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.print("Условие задания: Напишите фильтр InfixToPostfix, который преобразует арифметическое выражение из инфиксного в постфиксное\n" + "Введите значение выражения, для преобразования его в посфиксную форму: ");
+        System.out.print("Условие задания: Напишите фильтр InfixToPostfix, который преобразует арифметическое выражение из инфиксного в постфиксное\n" + "Введите значение выражения, для преобразования его в постфиксную форму: ");
         String inputLine = in.nextLine();
         if (isLineCorrect(inputLine)) {
             System.out.print(getCorrectLine(Transformation.toPostfix(inputLine)));
