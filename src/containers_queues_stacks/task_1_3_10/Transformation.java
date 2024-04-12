@@ -6,7 +6,6 @@ public class Transformation {
     private Transformation() {
 
     }
-
     public static String toPostfix(String line) {
         StringBuilder bld = new StringBuilder();
         Deque<Character> stackArithmeticOperation = new ArrayDeque<>();
@@ -23,6 +22,7 @@ public class Transformation {
                     while (isNoOpenBracket(stackArithmeticOperation)) {
                         bld.append(addSymbolsOperation(stackArithmeticOperation.pop()));
                     }
+                    stackArithmeticOperation.pop();
                     stackArithmeticOperation.push(line.charAt(i));
                     continue;
                 }
