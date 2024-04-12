@@ -21,7 +21,8 @@ public class Directory {
                 }
                 if (file.isFile()) {
                     bld.append("Файл: " + file.getName() + "\n");
-                } else {
+                }
+                else {
                     bld.append("Папка: " + file.getName() + "\n" + listContentDirectories(file, (recursionInput + 1)));
                 }
             }
