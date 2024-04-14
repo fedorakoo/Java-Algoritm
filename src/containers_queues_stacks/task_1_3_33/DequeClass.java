@@ -27,13 +27,13 @@ public class DequeClass<T> {
     }
 
     public void pushLeft(T item) {
-        arr = (T[]) resizingArrayDeque.getArrLargerOneFirstLeft(arr, size);
+        arr = resizingArrayDeque.getArrLargerOneFirstLeft(arr, size);
         size++;
         arr[0] = item;
     }
 
     public void pushRight(T item) {
-        arr = (T[]) resizingArrayDeque.getArrLargerOneFirstRight(arr, size);
+        arr = resizingArrayDeque.getArrLargerOneFirstRight(arr, size);
         arr[size] = item;
         size++;
     }
@@ -41,7 +41,7 @@ public class DequeClass<T> {
     public T popLeft() {
         if (!isEmpty()) {
             T result = arr[0];
-            arr = (T[]) resizingArrayDeque.getArrSmallerOneFirstLeft(arr, size);
+            arr = resizingArrayDeque.getArrSmallerOneFirstLeft(arr, size);
             size--;
             return result;
         }
@@ -51,7 +51,7 @@ public class DequeClass<T> {
     public T popRight() {
         if (!isEmpty()) {
             T result = arr[size - 1];
-            arr = (T[]) resizingArrayDeque.getArrSmallerOneFirstRight(arr, size);
+            arr = resizingArrayDeque.getArrSmallerOneFirstRight(arr, size);
             size--;
             return result;
         }
