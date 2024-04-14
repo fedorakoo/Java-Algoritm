@@ -35,7 +35,8 @@ public class SortTime {
     private static String numberToString(int n) {
         if (n < 10) {
             return "0" + Integer.toString(n);
-        } else {
+        }
+        else {
             return Integer.toString(n);
         }
     }

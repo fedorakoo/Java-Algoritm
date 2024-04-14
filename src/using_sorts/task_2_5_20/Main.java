@@ -42,7 +42,8 @@ public class Main {
         try {
             Integer.parseInt(str);
             return true;
-        } catch (NumberFormatException e) {
+        }
+        catch (NumberFormatException e) {
             return false;
         }
     }
