@@ -1,7 +1,7 @@
 package containers_queues_stacks.task_1_3_43;
 
 import java.io.File;
-import java.nio.file.*;
+import java.nio.file.Files;
 
 public class Directory {
     private Directory() {
@@ -21,8 +21,7 @@ public class Directory {
                 }
                 if (file.isFile()) {
                     bld.append("Файл: " + file.getName() + "\n");
-                }
-                else {
+                } else {
                     bld.append("Папка: " + file.getName() + "\n" + listContentDirectories(file, (recursionInput + 1)));
                 }
             }
