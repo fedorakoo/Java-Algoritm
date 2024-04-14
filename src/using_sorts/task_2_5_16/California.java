@@ -5,51 +5,57 @@ import java.util.Scanner;
 
 public class California {
     public static void main(String[] args) {
-        System.out.println("Условие задания: Выборы без предпочтений. Чтобы не ущемлять кандидатов, имена которых находятся в конце алфавита, на выборах губернатора Калифорнии в 2003 г. их упорядочили с помощью определенного набора символов. Напишите клиент California с единственным статическим методом main(), который упорядочивает строки в таком порядке. Считайте, что все строки содержат только прописные буквы.");
+        StringBuilder bld = new StringBuilder();
+        System.out.println("Условие задания: Выборы без предпочтений. Чтобы не ущемлять кандидатов, имена которых находятся в конце алфавита, на выборах губернатора Калифорнии в 2003 г. их упорядочили с помощью определенного набора латинских символов. Напишите клиент California с единственным статическим методом main(), который упорядочивает строки в таком порядке. Считайте, что все строки содержат только прописные буквы.");
         Scanner in = new Scanner(System.in);
         System.out.print("Введите количество кандидатов: ");
         int number = in.nextInt();
-        final int SizeEnglishAlphabet = 26;
-        ArrayList<String> arrCandidate = new ArrayList<>();
+        final int SIZE_ENGLISH_ALPHABET = 26;
+        ArrayList<String> candidates = new ArrayList<>();
         for (int i = 0; i < number; i++) {
             System.out.print("Введите фамилию кандидата номер " + (i + 1) + ". ");
-            arrCandidate.add(in.next());
+            candidates.add(in.next());
         }
         int[] arrLetterToSort = {'r', 'w', 'q', 'o', 'j', 'm', 'v', 'a', 'h', 'b', 's', 'g', 'z', 'x', 'n', 't', 'c', 'i', 'e', 'k', 'u', 'p', 'd', 'y', 'f', 'l'};
-        int[] letterPower = new int[SizeEnglishAlphabet];
-        for (int i = 0; i < SizeEnglishAlphabet; i++) {
-            for (int t = 0; t < SizeEnglishAlphabet; t++) {
+        int[] letterPower = new int[SIZE_ENGLISH_ALPHABET];
+        for (int i = 0; i < SIZE_ENGLISH_ALPHABET; i++) {
+            for (int t = 0; t < SIZE_ENGLISH_ALPHABET; t++) {
                 if (arrLetterToSort[t] == 'a' + i) {
                     letterPower[i] = t;
                     break;
                 }
             }
         }
-        for (int t = 0; t < arrCandidate.size(); t++) {
-            for (int i = 1; i < arrCandidate.size(); i++) {
+        boolean isArrSorted = true;
+        for (int t = 0; t < candidates.size() && !isArrSorted; t++) {
+            isArrSorted = true;
+            for (int i = 1; i < candidates.size(); i++) {
                 boolean isFirstLineMoreThanSecond = true;
-                for (int j = 0; j < arrCandidate.get(i).length() && j < arrCandidate.get(i - 1).length() && isFirstLineMoreThanSecond; j++) {
-                    if (letterPower[arrCandidate.get(i).charAt(j) - 'a'] > letterPower[arrCandidate.get(i - 1).charAt(j) - 'a']) {
+                for (int j = 0; j < candidates.get(i).length() && j < candidates.get(i - 1).length() && isFirstLineMoreThanSecond; j++) {
+                    if (letterPower[candidates.get(i).charAt(j) - 'a'] > letterPower[candidates.get(i - 1).charAt(j) - 'a']) {
                         break;
                     }
-                    if (letterPower[arrCandidate.get(i).charAt(j) - 'a'] < letterPower[arrCandidate.get(i - 1).charAt(j) - 'a']) {
+                    if (letterPower[candidates.get(i).charAt(j) - 'a'] < letterPower[candidates.get(i - 1).charAt(j) - 'a']) {
                         isFirstLineMoreThanSecond = false;
-                    } else if (j + 1 == arrCandidate.get(i).length() || j + 1 == arrCandidate.get(i - 1).length()) {
-                        isFirstLineMoreThanSecond = (arrCandidate.get(i).length() > arrCandidate.get(i - 1).length());
+                    }
+                    else if (j + 1 == candidates.get(i).length() || j + 1 == candidates.get(i - 1).length()) {
+                        isFirstLineMoreThanSecond = (candidates.get(i).length() > candidates.get(i - 1).length());
                         break;
                     }
                 }
                 if (!isFirstLineMoreThanSecond) {
-                    String change = arrCandidate.get(i);
-                    arrCandidate.set(i, arrCandidate.get(i - 1));
-                    arrCandidate.set(i - 1, change);
+                    String change = candidates.get(i);
+                    candidates.set(i, candidates.get(i - 1));
+                    candidates.set(i - 1, change);
+                    isArrSorted = false;
                 }
             }
         }
 
         System.out.println("Конечный список кандидатов:");
-        for (int i = 0; i < arrCandidate.size(); i++) {
-            System.out.println(String.valueOf(i + 1) + '.' + arrCandidate.get(i));
+        for (int i = 0; i < candidates.size(); i++) {
+            bld.append(String.valueOf(i + 1) + "." + candidates.get(i) + "\n");
         }
+        System.out.println(bld);
     }
 }
