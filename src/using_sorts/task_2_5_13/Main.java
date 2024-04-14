@@ -1,8 +1,8 @@
 package using_sorts.task_2_5_13;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,14 +11,13 @@ public class Main {
         System.out.print("Введите количество заданий: ");
         int m = in.nextInt();
         Map<Double, String> unsortedMap = new HashMap<>();
-        for(int i = 0; i < m; i++) {
+        for (int i = 0; i < m; i++) {
             System.out.print("Введите наименование задания номер " + (i + 1) + ": ");
             String name = in.next();
             System.out.print("Введите значение времени(в часах) выполнения задания номер " + (i + 1) + ": ");
             double time = in.nextDouble();
             unsortedMap.put(time, name);
         }
-        System.out.print("\nПорядок выполнения заданий\n" +
-                LPT.orderOfExecution(unsortedMap));
+        System.out.print("\nПорядок выполнения заданий\n" + LPT.orderOfExecution(unsortedMap));
     }
 }
