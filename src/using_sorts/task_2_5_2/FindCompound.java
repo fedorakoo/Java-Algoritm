@@ -8,16 +8,18 @@ public class FindCompound {
     }
 
     public static String findCompound(List<String> wordsSorted) {
-        int[] letters = new int[26];
+        int[] letters = new int[33];
+        char startLetter = getStartLetter(wordsSorted.get(0).charAt(0));
+        int sizeAlphabet = getSizeAlphabet(wordsSorted.get(0).charAt(0));
         for (int i = 0; i < wordsSorted.size(); i++) {
-            if (letters[wordsSorted.get(i).charAt(0) - 'a'] == 0) {
-                letters[wordsSorted.get(i).charAt(0) - 'a'] = i + 1;
+            if (letters[wordsSorted.get(i).charAt(0) - startLetter] == 0) {
+                letters[wordsSorted.get(i).charAt(0) - startLetter] = i + 1;
             }
         }
         letters = getCorrectArray(wordsSorted.size(), letters);
         StringBuilder bld = new StringBuilder();
         for (int i = 0; i < wordsSorted.size(); i++) {
-            for (int j = Math.max(i, letters[wordsSorted.get(i).charAt(0) - 'a']); wordsSorted.get(i).charAt(0) - 'a' + 1 < 26 && j < letters[wordsSorted.get(i).charAt(0) - 'a' + 1]; j++) {
+            for (int j = Math.max(i, letters[wordsSorted.get(i).charAt(0) - startLetter]); wordsSorted.get(i).charAt(0) - startLetter + 1 < sizeAlphabet && j < letters[wordsSorted.get(i).charAt(0) - startLetter + 1]; j++) {
                 String firstWord = wordsSorted.get(i);
                 String secondWord = wordsSorted.get(j);
                 if (isFirstWordBeginningSecond(firstWord, secondWord)) {
@@ -31,7 +33,15 @@ public class FindCompound {
         }
         return bld.toString();
     }
-
+    private static int getSizeAlphabet(char firstLetter) {
+        return (isLetterEnglish(firstLetter) ? 29 : 33);
+    }
+    private static char getStartLetter(char firstLetter) {
+        return (isLetterEnglish(firstLetter) ? 'a' : 'а');
+    }
+    private static boolean isLetterEnglish(char ch) {
+        return (ch >= 'a' && ch <= 'z');
+    }
     private static boolean isFirstWordBeginningSecond(String firstWord, String secondWord) {
         if (firstWord.length() >= secondWord.length()) {
             return false;
@@ -72,7 +82,7 @@ public class FindCompound {
 
     private static int[] getCorrectArray(int sizeArrayList, int[] letters) {
         int maxPtr = sizeArrayList;
-        for (int i = 25; i >= 0; i--) {
+        for (int i = letters.length - 1; i >= 0; i--) {
             if (letters[i] == 1) {
                 letters[i] = 0;
                 break;
