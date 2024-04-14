@@ -11,7 +11,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int numberWord = in.nextInt();
         ArrayList<String> words = new ArrayList<>();
-        for(int i = 0; i < numberWord; i++) {
+        for (int i = 0; i < numberWord; i++) {
             System.out.print("Введите слово под номером " + (i + 1) + ": ");
             words.add(in.next());
         }
