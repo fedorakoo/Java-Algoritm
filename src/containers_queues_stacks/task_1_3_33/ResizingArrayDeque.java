@@ -19,16 +19,12 @@ public class ResizingArrayDeque<T> {
     }
 
     public T[] getArrSmallerOneFirstLeft(T[] arr, int size) {
-        T[] newArr = Arrays.copyOfRange(arr, 1, size - 1);
-        newArr[0] = null;
+        T[] newArr = Arrays.copyOfRange(arr, 1, size);
         return newArr;
     }
 
     public T[] getArrSmallerOneFirstRight(T[] arr, int size) {
         T[] newArr = Arrays.copyOf(arr, size - 1);
-        for (int i = size; i > 0; i--) {
-            newArr[i] = newArr[i - 1];
-        }
         return newArr;
     }
 }
