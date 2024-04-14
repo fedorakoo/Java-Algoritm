@@ -10,11 +10,10 @@ public class Transformation {
         StringBuilder bld = new StringBuilder();
         Deque<Character> stackArithmeticOperation = new ArrayDeque<>();
         for (int i = 0; i < line.length(); i++) {
-            int firstNumber = i;
-            i += sizeNumber(line, i);
-            bld.append(line.substring(firstNumber, i) + " ");
-
-            if (isSymbolOperation(line, i)) {
+            if(isSymbolNumber(line, i)) {
+                bld.append(line.charAt(i));
+            }
+            else if (isSymbolOperation(line, i)) {
                 if (isAddAtFirst(stackArithmeticOperation, line, i)) {
                     stackArithmeticOperation.push(line.charAt(i));
                     continue;
@@ -41,19 +40,11 @@ public class Transformation {
                 line.charAt(i) == ')');
     }
 
-    private static int sizeNumber(String line, int i) {
-        int firstNumber = i;
-        while (isSymbolNumber(line, i)) {
-            i++;
-        }
-        return i - firstNumber;
-    }
-
     private static String addResidual(Deque<Character> stackArithmeticOperation) {
         StringBuilder bld = new StringBuilder();
         while (!stackArithmeticOperation.isEmpty()) {
             if (!isBracketOfOperation(stackArithmeticOperation.peek()))
-                bld.append(stackArithmeticOperation.pop() + " ");
+                bld.append(" "+ stackArithmeticOperation.pop() + " ");
             else stackArithmeticOperation.pop();
         }
         return bld.toString();
@@ -92,7 +83,7 @@ public class Transformation {
 
     private static String addSymbolsOperation(char operation) {
         if (operation != '(' && operation != ')') {
-            return operation + " ";
+            return " " + operation + " ";
         }
         return "";
     }
