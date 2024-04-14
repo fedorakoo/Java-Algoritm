@@ -19,9 +19,7 @@ public class Main {
         System.out.print("Введите строку, состоящую из скобок, необходимую к проверке: ");
         String line = in.nextLine();
         if (isInputLineCorrect(line)) {
-            System.out.print(Parentheses.isBracketsCorrect(line) ?
-                    "Расстановка символов в данной строке является корректной" :
-                    "Расстановка символов в данной строке является некорректной");
+            System.out.print(Parentheses.isBracketsCorrect(line) ? "Расстановка символов в данной строке является корректной" : "Расстановка символов в данной строке является некорректной");
         } else {
             System.out.print("Произошла ошибка при вводе строки!");
         }

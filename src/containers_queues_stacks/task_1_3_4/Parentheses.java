@@ -30,8 +30,6 @@ public class Parentheses {
             firstBracket = secondBracked;
             secondBracked = temp;
         }
-        return (firstBracket == '(' && secondBracked == ')' ||
-                firstBracket == '[' && secondBracked == ']' ||
-                firstBracket == '{' && secondBracked == '}');
+        return (firstBracket == '(' && secondBracked == ')' || firstBracket == '[' && secondBracked == ']' || firstBracket == '{' && secondBracked == '}');
     }
 }
