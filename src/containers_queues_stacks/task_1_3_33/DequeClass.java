@@ -2,18 +2,18 @@ package containers_queues_stacks.task_1_3_33;
 
 import java.util.Scanner;
 
-public class DequeClass<Item> {
+public class DequeClass<T> {
     Scanner in = new Scanner(System.in);
 
     public DequeClass(int newSize) {
         size = newSize;
-        arr = (Item[]) new Object[size];
+        arr = (T[]) new Object[size];
     }
 
     public void inputArray() {
         for (int i = 0; i < size; i++) {
             System.out.print("Введите элемент номер " + Integer.toString(i + 1) + ": ");
-            arr[i] = (Item) in.nextLine();
+            arr[i] = (T) in.nextLine();
         }
         System.out.println();
     }
@@ -26,39 +26,39 @@ public class DequeClass<Item> {
         return size;
     }
 
-    public void pushLeft(Item item) {
-        arr = (Item[]) resizingArrayDeque.getArrLargerOneFirstLeft(arr, size);
+    public void pushLeft(T item) {
+        arr = (T[]) resizingArrayDeque.getArrLargerOneFirstLeft(arr, size);
         size++;
         arr[0] = item;
     }
 
-    public void pushRight(Item item) {
-        arr = (Item[]) resizingArrayDeque.getArrLargerOneFirstRight(arr, size);
+    public void pushRight(T item) {
+        arr = (T[]) resizingArrayDeque.getArrLargerOneFirstRight(arr, size);
         arr[size] = item;
         size++;
     }
 
-    public Item popLeft() {
+    public T popLeft() {
         if (!isEmpty()) {
-            Item result = arr[0];
-            arr = (Item[]) resizingArrayDeque.getArrSmallerOneFirstLeft(arr, size);
+            T result = arr[0];
+            arr = (T[]) resizingArrayDeque.getArrSmallerOneFirstLeft(arr, size);
             size--;
             return result;
         }
         return null;
     }
 
-    public Item popRight() {
+    public T popRight() {
         if (!isEmpty()) {
-            Item result = arr[size - 1];
-            arr = (Item[]) resizingArrayDeque.getArrSmallerOneFirstRight(arr, size);
+            T result = arr[size - 1];
+            arr = (T[]) resizingArrayDeque.getArrSmallerOneFirstRight(arr, size);
             size--;
             return result;
         }
         return null;
     }
 
-    void changeElement(Item item, int index) {
+    void changeElement(T item, int index) {
         arr[index] = item;
     }
 
@@ -71,7 +71,7 @@ public class DequeClass<Item> {
         System.out.print(bld.toString() + "\n");
     }
 
-    private ResizingArrayDeque resizingArrayDeque = new ResizingArrayDeque();
-    private Item[] arr;
+    private ResizingArrayDeque<T> resizingArrayDeque = new ResizingArrayDeque<>();
+    private T[] arr;
     private int size;
 }

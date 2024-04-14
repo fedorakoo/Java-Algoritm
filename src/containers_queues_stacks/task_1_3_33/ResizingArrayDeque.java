@@ -1,35 +1,34 @@
 package containers_queues_stacks.task_1_3_33;
 
-public class ResizingArrayDeque<Item> {
-    public Item[] getArrLargerOneFirstLeft(Item[] arr, int size) {
-        Object[] newArr = new Object[size + 1];
-        for (int i = 0; i < arr.length; i++) {
-            newArr[i + 1] = arr[i];
+import java.util.Arrays;
+
+public class ResizingArrayDeque<T> {
+    public T[] getArrLargerOneFirstLeft(T[] arr, int size) {
+        T[] newArr = Arrays.copyOf(arr, size + 1);
+        for (int i = size; i > 0; i--) {
+            newArr[i] = newArr[i - 1];
         }
-        return (Item[])newArr;
+        newArr[0] = null;
+        return newArr;
     }
 
-    public Item[] getArrLargerOneFirstRight(Item[] arr, int size) {
-        Object[] newArr = new Object[size + 1];
-        for (int i = 0; i < arr.length; i++) {
-            newArr[i] = arr[i];
-        }
-        return (Item[])newArr;
+    public T[] getArrLargerOneFirstRight(T[] arr, int size) {
+        T[] newArr = Arrays.copyOf(arr, size + 1);
+        newArr[size] = null;
+        return newArr;
     }
 
-    public Item[] getArrSmallerOneFirstLeft(Item[] arr, int size) {
-        Object[] newArr = new Object[size - 1];
-        for (int i = 0; i < newArr.length; i++) {
-            newArr[i] = arr[i + 1];
-        }
-        return (Item[]) newArr;
+    public T[] getArrSmallerOneFirstLeft(T[] arr, int size) {
+        T[] newArr = Arrays.copyOfRange(arr, 1, size - 1);
+        newArr[0] = null;
+        return newArr;
     }
 
-    public Item[] getArrSmallerOneFirstRight(Item[] arr, int size) {
-        Object[] newArr = new Object[size - 1];
-        for (int i = 0; i < newArr.length; i++) {
-            newArr[i] = arr[i];
+    public T[] getArrSmallerOneFirstRight(T[] arr, int size) {
+        T[] newArr = Arrays.copyOf(arr, size - 1);
+        for (int i = size; i > 0; i--) {
+            newArr[i] = newArr[i - 1];
         }
-        return (Item[])newArr;
+        return newArr;
     }
 }
