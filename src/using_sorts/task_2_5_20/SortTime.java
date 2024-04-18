@@ -1,6 +1,5 @@
 package using_sorts.task_2_5_20;
 
-import javax.imageio.ImageTranscoder;
 import java.util.*;
 
 public class SortTime {
@@ -42,14 +41,6 @@ public class SortTime {
             }
         }
         return "Самый продолжительный интервал простоя процессора длился: " + Integer.toString(result) + " минут.";
-    }
-    private static String numberToString(int n) {
-        if (n < 10) {
-            return "0" + Integer.toString(n);
-        }
-        else {
-            return Integer.toString(n);
-        }
     }
 
     private static int countMinute(String line) {
