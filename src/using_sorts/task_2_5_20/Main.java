@@ -6,14 +6,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Условие задания: Пусть компьютер с параллельным процессором выполняет M заданий. Напишите программу, которая по заданным моментам запуска и завершения заданий находит максимальный интервал, когда процессор находился в состоянии простоя, и максимальный интервал, когда процессор находился в cостоянии работы.");
-        LinkedList<String> jobOperation = new LinkedList<>();
+        LinkedList<String> jobOperationStart = new LinkedList<>();
+        LinkedList<String> jobOperationEnd = new LinkedList<>();
         System.out.print("Введите значение количества операций: ");
         int n = inputInt();
         for (int i = 0; i < n; i++) {
-            System.out.print("Введите время произведения операции над компьютером номер " + (i + 1) + ": ");
-            jobOperation.add(inputTime()); // Корректный пример ввода времени: 12:22
+            System.out.print("Введите время произведения начала операции номер " + (i + 1) + ": ");
+            jobOperationStart.add(inputTime());
+            System.out.print("Введите время произведения окончания операции номер " + (i + 1) + ": ");
+            jobOperationEnd.add(inputTime());// Корректный пример ввода времени: 12:22
         }
-        System.out.println(SortTime.getTimeIntervals(jobOperation));
+        System.out.println(SortTime.getTimeIntervals(jobOperationStart, jobOperationEnd));
     }
 
     private static String inputTime() {
@@ -31,7 +34,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String number;
         number = in.nextLine();
-        while (!isNumber(number) || Integer.parseInt(number) <= 0 || Integer.parseInt(number) % 2 == 1) {
+        while (!isNumber(number) || Integer.parseInt(number) <= 0) {
             System.out.print("Введите корректное значение повторно: ");
             number = in.nextLine();
         }

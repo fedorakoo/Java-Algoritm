@@ -1,37 +1,48 @@
 package using_sorts.task_2_5_20;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import javax.imageio.ImageTranscoder;
+import java.util.*;
 
 public class SortTime {
     private SortTime() {
 
     }
 
-    public static String getTimeIntervals(List<String> arrList) {
-        List<Integer> minuteList = new LinkedList<>();
-        for (int i = 0; i < arrList.size(); i++) {
-            minuteList.add(countMinute(arrList.get(i)));
+    public static String getTimeIntervals(List<String> arrListStart, List<String> arrListEnd) {
+        List<Integer> minuteStartList = new LinkedList<>();
+        List<Integer> minuteEndList = new LinkedList<>();
+        for(int i = 0; i < arrListStart.size(); i++) {
+            minuteStartList.add(countMinute(arrListStart.get(i)));
+            minuteEndList.add(countMinute(arrListEnd.get(i)));
         }
-        Collections.sort(minuteList);
-        int momentShortestNumber = 0;
-        int shortestTimeInterval = minuteList.get(1) - minuteList.get(0);
-        int momentLongestNumber = 0;
-        int longestTimeInterval = minuteList.get(1) - minuteList.get(0);
-        for (int i = 0; i < arrList.size(); i += 2) {
-            if (minuteList.get(i + 1) - minuteList.get(i) < shortestTimeInterval) {
-                momentShortestNumber = i;
-                shortestTimeInterval = minuteList.get(i + 1) - minuteList.get(i);
-            }
-            if (minuteList.get(i + 1) - minuteList.get(i) > longestTimeInterval) {
-                momentLongestNumber = i;
-                longestTimeInterval = minuteList.get(i + 1) - minuteList.get(i);
-            }
-        }
-        return "Самый короткий интервал: c " + Integer.toString(minuteList.get(momentShortestNumber) / 60) + ":" + numberToString(minuteList.get(momentShortestNumber) % 60) + " по " + numberToString(minuteList.get(momentShortestNumber + 1) / 60) + ":" + numberToString(minuteList.get(momentShortestNumber + 1) % 60) + "\n" + "Самый длинный интервал: с " + numberToString(minuteList.get(momentLongestNumber) / 60) + ":" + numberToString(minuteList.get(momentLongestNumber) % 60) + " по " + numberToString(minuteList.get(momentLongestNumber + 1) / 60) + ":" + numberToString(minuteList.get(momentLongestNumber + 1) % 60) + "\n";
-    }
+        for (int i = 1; i < minuteStartList.size(); ++i) {
+            int value1 = minuteStartList.get(i);
+            int value2 = minuteEndList.get(i);
+            int j = i - 1;
+            while (j >= 0 && minuteStartList.get(j) > value1) {
+                int temp1 = minuteStartList.get(j);
+                minuteStartList.set(j + 1, minuteStartList.get(j));
+                minuteStartList.set(j, temp1);
 
+                int temp2 = minuteEndList.get(j);
+                minuteEndList.set(j + 1, minuteEndList.get(j));
+                minuteEndList.set(j, temp2);
+                
+                j--;
+            }
+            minuteStartList.set(j + 1, value1);
+            minuteEndList.set(j + 1, value2);
+        }
+        
+        int result = 0;
+        for(int i = 0; i < minuteStartList.size() - 1; ++i) {
+            int value = minuteStartList.get(i + 1) - minuteEndList.get(i);
+            if(value > 0) {
+                result = Math.max(result, value);
+            }
+        }
+        return "Самый продолжительный интервал простоя процессора длился: " + Integer.toString(result) + " минут.";
+    }
     private static String numberToString(int n) {
         if (n < 10) {
             return "0" + Integer.toString(n);
