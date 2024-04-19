@@ -9,7 +9,7 @@ public class SortTime {
     public static String getTimeIntervals(List<String> arrListStart, List<String> arrListEnd) {
         List<Integer> minuteStartList = new LinkedList<>();
         List<Integer> minuteEndList = new LinkedList<>();
-        for(int i = 0; i < arrListStart.size(); i++) {
+        for (int i = 0; i < arrListStart.size(); i++) {
             minuteStartList.add(countSecond(arrListStart.get(i)));
             minuteEndList.add(countSecond(arrListEnd.get(i)));
         }
@@ -25,29 +25,34 @@ public class SortTime {
                 int temp2 = minuteEndList.get(j);
                 minuteEndList.set(j + 1, minuteEndList.get(j));
                 minuteEndList.set(j, temp2);
-                
+
                 j--;
             }
             minuteStartList.set(j + 1, value1);
             minuteEndList.set(j + 1, value2);
         }
-        
+
         int firstResult = 0;
-        for(int i = 0; i < minuteStartList.size() - 1; ++i) {
+        for (int i = 0; i < minuteStartList.size() - 1; ++i) {
             int value = minuteStartList.get(i + 1) - minuteEndList.get(i);
-            if(value > firstResult) {
+            if (value > firstResult) {
                 firstResult = value;
             }
         }
         int secondResult = 0;
         int value = 0;
-        for(int i = 0; i < minuteEndList.size() - 1; ++i) {
-            value  += Math.min(minuteEndList.get(i), minuteStartList.get(i+1)) - minuteStartList.get(i);
-            if(minuteEndList.get(i) < minuteStartList.get(i+1)) {
+        for (int i = 0; i < minuteEndList.size(); ++i) {
+            if (i + 1 < minuteStartList.size()) {
+                value += Math.min(minuteEndList.get(i), minuteStartList.get(i + 1)) - minuteStartList.get(i);
+            } else {
+                value += minuteEndList.get(i) - minuteStartList.get(i);
+            }
+            if (i + 1 < minuteStartList.size() && minuteEndList.get(i) < minuteStartList.get(i + 1)) {
                 secondResult = Math.max(value, secondResult);
                 value = 0;
             }
         }
+        secondResult = Math.max(value, secondResult);
         return "\nСамый продолжительный интервал простоя процессора длился: " + toString(firstResult) + "\n" +
                 "Самый продолжительный интервал работы процессора длился: " + toString(secondResult) + "\n ";
     }
