@@ -11,23 +11,37 @@ public class Main {
         System.out.print("Введите значение количества операций: ");
         int n = inputInt();
         for (int i = 0; i < n; i++) {
-            System.out.print("Введите время произведения начала операции номер " + (i + 1) + ": ");
-            jobOperationStart.add(inputTime());
-            System.out.print("Введите время произведения окончания операции номер " + (i + 1) + ": ");
-            jobOperationEnd.add(inputTime());// Корректный пример ввода времени: 12:22
+            System.out.print("Введите время начала операции номер " + (i + 1) + ": ");
+            jobOperationStart.add(inputFirstTime());
+            System.out.print("Введите время окончания операции номер " + (i + 1) + ": ");
+            jobOperationEnd.add(inputSecondTime(jobOperationStart.get(i)));// Корректный пример ввода времени: 12:22
         }
         System.out.println(SortTime.getTimeIntervals(jobOperationStart, jobOperationEnd));
     }
 
-    private static String inputTime() {
+    private static String inputSecondTime(String startTime) {
+        Scanner in = new Scanner(System.in);
+        String time;
+        time = in.nextLine();
+        while (!isLineCorrect(time)|| SortTime.countSecond(startTime) > SortTime.countSecond(time)) {
+            outputIncorrectInput();
+            time = in.nextLine();
+        }
+        return time;
+    }
+    private static String inputFirstTime() {
         Scanner in = new Scanner(System.in);
         String time;
         time = in.nextLine();
         while (!isLineCorrect(time)) {
-            System.out.print("Введите корректное значение повторно: ");
+            outputIncorrectInput();
             time = in.nextLine();
         }
         return time;
+    }
+    
+    private static void outputIncorrectInput() {
+        System.out.print("Введите корректное значение повторно: ");
     }
 
     private static int inputInt() {
@@ -35,7 +49,7 @@ public class Main {
         String number;
         number = in.nextLine();
         while (!isNumber(number) || Integer.parseInt(number) <= 0) {
-            System.out.print("Введите корректное значение повторно: ");
+            outputIncorrectInput();
             number = in.nextLine();
         }
         return Integer.parseInt(number);
@@ -52,17 +66,19 @@ public class Main {
     }
 
     private static boolean isLineCorrect(String line) {
-        if (line.length() != 5) {
+        if (line.length() != 8) {
             return false;
         } else {
             for (int i = 0; i < line.length(); i++) {
-                if (i != 2 && !Character.isDigit(line.charAt(i)) || (i == 2 && line.charAt(i) != ':')) {
+                if (i != 2 && i != 5 && !Character.isDigit(line.charAt(i)) 
+                        || (i == 2 && line.charAt(i) != ':') || (i == 5 && line.charAt(i) != ':')) {
                     return false;
                 }
             }
             int hour = Integer.parseInt(line.substring(0, 2));
             int minute = Integer.parseInt(line.substring(3, 5));
-            return (hour >= 0 && hour < 24 && minute >= 0 && minute < 60);
+            int second = Integer.parseInt(line.substring(6, 8));
+            return (hour >= 0 && hour < 24 && minute >= 0 && minute < 60 && second >= 0 && second < 60);
         }
     }
 }
