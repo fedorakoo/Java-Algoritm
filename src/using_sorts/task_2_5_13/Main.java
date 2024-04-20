@@ -14,7 +14,7 @@ public class Main {
         for (int i = 0; i < m; i++) {
             System.out.print("Введите наименование задания номер " + (i + 1) + ": ");
             String name = inputName(unsortedMap);
-            System.out.print("Введите значение времени(в часах) выполнения задания номер " + (i + 1) + ": ");
+            System.out.print("Введите значение времени(в секундах) выполнения задания номер " + (i + 1) + ": ");
             double time = inputDouble();
             unsortedMap.put(name, time);
         }

@@ -22,7 +22,7 @@ public class LPT {
         }
 
         for (Map.Entry<String, Double> entry : sortedMap.entrySet()) {
-            bld.append("Наименование задания: " + entry.getKey() + "\t|\tКоличество часов: " + entry.getValue() + "\n");
+            bld.append("Наименование задания: " + entry.getKey() + "\t|\tКоличество секунд: " + entry.getValue() + "\n");
         }
         return bld.toString();
     }
