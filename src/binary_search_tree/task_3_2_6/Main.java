@@ -32,6 +32,7 @@ public class Main {
         }
     }
     public static void main(String[] args) {
+        System.out.println("Условие задания: добавьте в класс BST метод height() для вычисления высоты дерева. Разработайте две реализации: рекурсивный метод и метод наподобие size(), требуемого линейного времени на запрос.");
         BinarySearchTree tree = new BinarySearchTree();
         int next;
         do {
@@ -47,17 +48,17 @@ public class Main {
                 case 1: {
                     System.out.print("Введите значение добавляемого элемента: ");
                     int value = inputInt();
-                    tree.parent = tree.insert(tree.parent, value);
+                    tree.setParent(tree.insert(tree.getParent(), value));
                     break;
                 }
                 case 2: {
                     System.out.print("Введите значение удаляемого элемента: ");
                     int value = inputInt();
-                    tree.parent = tree.delete(tree.parent, value);
+                    tree.setParent(tree.delete(tree.getParent(), value));
                     break;
                 }
                 case 3: {
-                    System.out.print("Значение высоты дерева [height]: " + tree.height(tree.parent) + "\n");
+                    System.out.print("Значение высоты дерева [height]: " + tree.height(tree.getParent()) + "\n");
                     break;
                 }
                 case 4: {
@@ -66,14 +67,16 @@ public class Main {
                 }
                 case 5: {
                     System.out.print("Элементы дерева: ");
-                    tree.printTree(tree.parent);
+                    tree.printTree(tree.getParent());
                     break;
                 }
                 default: {
-                    
+                    break;
                 }
             }
         } while (next != 6);
+        System.out.println("Спасибо за внимание!");
     }
+    
 }
 

@@ -95,6 +95,7 @@ class BinarySearchTree {
                 node.right = delete(node.right, node.key);
             }
         }
+        size = height(node);
         return node;
     }
     int height(Node node) {
@@ -109,10 +110,16 @@ class BinarySearchTree {
         System.out.print(node.key + " ");
         printTree(node.right);
     }
+    Node getParent() {
+        return parent;
+    }
+    void setParent(Node node) {
+        parent = node;
+    }
     int size() {
         return size;
     }
-    public Node parent;
+    private Node parent;
     private int size;
     private int someSize = 1;
 }
