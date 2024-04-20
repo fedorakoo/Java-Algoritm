@@ -33,6 +33,7 @@ public class Main {
         }
     }
     public static void main(String[] args) {
+        System.out.println("Условие задания: Напишите клиент тестирования, включающий в себя функции min(), max(), floor(), ceiling(), select(), rank(), delete(), deleteMin(), deleteMax(), keys().");
         BinarySearchTree tree = new BinarySearchTree();
         int next;
         do {
@@ -57,38 +58,38 @@ public class Main {
                 case 1: {
                     System.out.print("Введите значение добавляемого элемента: ");
                     int value = inputInt();
-                    tree.parent = tree.insert(tree.parent, value);
+                    tree.setParent(tree.insert(tree.getParent(), value));
                     break;
                 }
                 case 2: {
                     System.out.print("Введите значение удаляемого элемента: ");
                     int value = inputInt();
-                    tree.parent = tree.delete(tree.parent, value);
+                    tree.setParent(tree.delete(tree.getParent(), value));
                     break;
                 }
                 case 3: {
-                    System.out.print("Значение высоты дерева: " + tree.height(tree.parent) + "\n");
+                    System.out.print("Значение высоты дерева: " + tree.height(tree.getParent()) + "\n");
                     break;
                 }
                 case 4: {
-                    System.out.print("Значение количества элементов дерева: " + tree.size(tree.parent) + "\n");
+                    System.out.print("Значение количества элементов дерева: " + tree.size(tree.getParent()) + "\n");
                     break;
                 }
                 case 5: {
-                    if(tree.min(tree.parent) == null) {
+                    if(tree.min(tree.getParent()) == null) {
                         System.out.print("Минимального элемента нет\n");
                     }
                     else {
-                        System.out.print("Значение минимального элемента дерева: " + tree.min(tree.parent).key + "\n");
+                        System.out.print("Значение минимального элемента дерева: " + tree.min(tree.getParent()).key + "\n");
                     }
                     break;
                 }
                 case 6: {
-                    if(tree.min(tree.parent) == null) {
+                    if(tree.min(tree.getParent()) == null) {
                         System.out.print("Максимального элемента нет\n");
                     }
                     else {
-                        System.out.print("Значение максимального элемента дерева: " + tree.max(tree.parent).key + "\n");
+                        System.out.print("Значение максимального элемента дерева: " + tree.max(tree.getParent()).key + "\n");
                     }
                     break;
                 }
@@ -101,38 +102,38 @@ public class Main {
                     break;
                 }
                 case 9: {
-                    System.out.print("Введите значение: ");
+                    outputInputInformation();
                     int value = inputInt();
-                    if(tree.floor(tree.parent, value) == null) {
+                    if(tree.floor(tree.getParent(), value) == null) {
                         System.out.print("Элемента нет\n");
                     }
                     else {
-                        System.out.print("Значение максимального элемента дерева: " + tree.floor(tree.parent, value).key + "\n");
+                        System.out.print("Значение 'пола' элемента дерева: " + tree.floor(tree.getParent(), value).key + "\n");
                     }
                     break;
                 }
                 case 10: {
-                    System.out.print("Введите значение: ");
+                    outputInputInformation();
                     int value = inputInt();
-                    if(tree.ceiling(tree.parent, value) == null) {
+                    if(tree.ceiling(tree.getParent(), value) == null) {
                         System.out.print("Элемента нет\n");
                     }
                     else {
-                        System.out.print("Значение максимального элемента дерева: " + tree.ceiling(tree.parent, value).key + "\n");
+                        System.out.print("Значение 'потолка' элемента дерева: " + tree.ceiling(tree.getParent(), value).key + "\n");
                     }
                     break;
                 }
                 case 11: {
-                    System.out.print("Введите значение: ");
+                    outputInputInformation();
                     int value = inputInt();
-                    BinarySearchTree.Node select = tree.select(tree.parent, value);
+                    BinarySearchTree.Node select = tree.select(tree.getParent(), value);
                     System.out.print((select == null ? "Данный элемент не найден" : "Данный элемент найден"));
                     break;
                 }
                 case 12: {
-                    System.out.print("Введите значение: ");
+                    outputInputInformation();
                     int value = inputInt();
-                    System.out.print("Значение ранга равно " + tree.rank(tree.parent, value));
+                    System.out.print("Значение ранга равно " + tree.rank(tree.getParent(), value));
                     break;
                 }
                 case 13: {
@@ -140,7 +141,7 @@ public class Main {
                     int valueLeft = inputInt();
                     System.out.print("Введите значение правого ограничения: ");
                     int valueRight = inputInt();
-                    List<Integer> result = tree.keys(tree.parent, valueLeft, valueRight);
+                    List<Integer> result = tree.keys(tree.getParent(), valueLeft, valueRight);
                     System.out.print("Список элементов: ");
                     for(int i = 0; i < result.size(); i++) {
                         System.out.print(result.get(i) + " ");
@@ -148,7 +149,7 @@ public class Main {
                     break;
                 }
                 case 14: {
-                    tree.printTree(tree.parent);
+                    tree.printTree(tree.getParent());
                     break;
                 }
                 default: {
@@ -156,9 +157,11 @@ public class Main {
                 }
             }
         } while (next != 15);
+        System.out.println("Спасибо за внимание!");
     }
-    void printInput(){
-        
+    
+    static void outputInputInformation() {
+        System.out.print("Введите значение: ");
     }
 }
 

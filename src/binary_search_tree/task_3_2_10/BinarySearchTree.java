@@ -200,6 +200,12 @@ class BinarySearchTree {
         System.out.print(node.key + " ");
         printTree(node.right);
     }
-    public Node parent;
+    void setParent(Node parent) {
+        this.parent = parent;
+    }
+    Node getParent() {
+        return parent;
+    }
+    private Node parent;
    
 }
