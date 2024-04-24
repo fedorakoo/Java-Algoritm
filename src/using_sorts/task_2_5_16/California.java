@@ -24,7 +24,7 @@ public class California {
                 }
             }
         }
-        boolean isArrSorted = true;
+        boolean isArrSorted = false;
         for (int t = 0; t < candidates.size() && !isArrSorted; t++) {
             isArrSorted = true;
             for (int i = 1; i < candidates.size(); i++) {
