@@ -1,8 +1,7 @@
 package binary_search_tree.task_3_2_6;
 
-import static binary_search_tree.task_3_2_6.Input.inputInt;
-import static binary_search_tree.task_3_2_6.Input.inputIntLimit;
-
+import static binary_search_tree.InputCheck.Input.inputInt;
+import static binary_search_tree.InputCheck.Input.inputIntLimit;
 
 public class Main {
     public static void main(String[] args) {
