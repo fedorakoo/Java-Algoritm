@@ -1,36 +1,10 @@
 package binary_search_tree.task_3_2_6;
 
-import java.util.Scanner;
+import static binary_search_tree.task_3_2_6.Input.inputInt;
+import static binary_search_tree.task_3_2_6.Input.inputIntLimit;
+
 
 public class Main {
-    private static int inputIntLimit(int limit) {
-        Scanner in = new Scanner(System.in);
-        String number;
-        number = in.nextLine();
-        while (!isNumberInteger(number) || Integer.parseInt(number) <= 0 || Integer.parseInt(number) > limit) {
-            System.out.print("Введите корректное значение повторно: ");
-            number = in.nextLine();
-        }
-        return Integer.parseInt(number); 
-    }
-    private static int inputInt() {
-        Scanner in = new Scanner(System.in);
-        String number;
-        number = in.nextLine();
-        while (!isNumberInteger(number)) {
-            System.out.print("Введите корректное значение повторно: ");
-            number = in.nextLine();
-        }
-        return Integer.parseInt(number);
-    }
-    private static boolean isNumberInteger(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
     public static void main(String[] args) {
         System.out.println("Условие задания: добавьте в класс BST метод height() для вычисления высоты дерева. Разработайте две реализации: рекурсивный метод и метод наподобие size(), требуемого линейного времени на запрос.");
         BinarySearchTree tree = new BinarySearchTree();
@@ -77,6 +51,5 @@ public class Main {
         } while (next != 6);
         System.out.println("Спасибо за внимание!");
     }
-    
 }
 
