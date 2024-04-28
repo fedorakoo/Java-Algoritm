@@ -2,8 +2,6 @@ package binary_search_tree.task_3_2_21;
 
 import java.util.Scanner;
 
-import static binary_search_tree.task_3_2_21.BinarySearchTree.isBinaryTree;
-
 public class Main {
     private static int inputIntLimit(int limit) {
         Scanner in = new Scanner(System.in);
@@ -42,9 +40,8 @@ public class Main {
                     "2. Удалить элемент\n" +
                     "3. Найти высоту дерева\n" +
                     "4. Вывести все элементы дерева\n" +
-                    "5. Проверить, является ли структура деревом\n" +
-                    "6. Вывести случайный элемент дерева" +
-                    "7. Завершить работу\n");
+                    "5. Вывести случайный элемент дерева\n" +
+                    "6. Завершить работу\n");
             System.out.print("Введите вариант продолжения: ");
             next = inputIntLimit(7);
             switch (next) {
@@ -70,16 +67,6 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    boolean isTree = isBinaryTree(tree.getParent());
-                    if (isTree) {
-                        System.out.println("Данная структрура является корректным бинарным деревом поиска");
-                    }
-                    else {
-                        System.out.println("Данная структрура не является корректным бинарным деревом поиска");
-                    }
-                    break;
-                }
-                case 6: {
                     if(tree.getParent() == null) {
                         System.out.println("Дерево не имеет элементов");
                     }
@@ -94,7 +81,6 @@ public class Main {
             }
         } while (next != 7);
         System.out.println("Спасибо за внимание!");
-
     }
 }
 

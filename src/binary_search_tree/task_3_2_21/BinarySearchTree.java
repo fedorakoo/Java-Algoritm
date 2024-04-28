@@ -13,9 +13,9 @@ class BinarySearchTree {
             this.key = key;
         }
     }
-    private void resetSomeSize() {
-        size = Math.max(size, someSize + 1);
-        someSize = 1;
+    private void resetvisitedNodeCount() {
+        size = Math.max(size, visitedNodeCount + 1);
+        visitedNodeCount = 1;
     }
     Node insert(Node node, int key) {
         if(node == null) {
@@ -24,34 +24,25 @@ class BinarySearchTree {
         }
         else if (key < node.key) {
             if(node.left == null) {
-                resetSomeSize();
+                resetvisitedNodeCount();
                 node.left = new Node(key);
             }
             else {
-                someSize++;
+                visitedNodeCount++;
                 insert(node.left, key);
             }
         }
         else {
             if(node.right == null) {
-                resetSomeSize();
+                resetvisitedNodeCount();
                 node.right = new Node(key);
             }
             else {
-                someSize++;
+                visitedNodeCount++;
                 insert(node.right, key);
             }
         }
         return node;
-    }
-    Node search(Node node, int key) {
-        if(node == null) {
-            return null;
-        }
-        if(node.key == key) {
-            return node;
-        }
-        return (node.key < key) ? search(node.left, key) : search(node.right, key);
     }
     Node getMin(Node node) {
         if(node == null) {
@@ -62,17 +53,6 @@ class BinarySearchTree {
         }
         else {
             return getMin(node.left);
-        }
-    }
-    Node getMax(Node node) {
-        if(node == null) {
-            return null;
-        }
-        else if(node.right == null) {
-            return node;
-        }
-        else {
-            return getMax(node.right);
         }
     }
     Node delete(Node node, int key) {
@@ -170,5 +150,5 @@ class BinarySearchTree {
     }
     private Node parent;
     private int size;
-    private int someSize = 1;
+    private int visitedNodeCount = 1;
 }
