@@ -2,8 +2,9 @@ package binary_search_tree.task_3_2_10;
 
 import java.util.List;
 
-import static binary_search_tree.task_3_2_10.Input.inputInt;
-import static binary_search_tree.task_3_2_10.Input.inputIntLimit;
+import static binary_search_tree.InputCheck.Input.inputInt;
+import static binary_search_tree.InputCheck.Input.inputIntLimit;
+
 
 public class Main {
     public static void main(String[] args) {
