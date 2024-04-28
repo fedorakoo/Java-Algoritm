@@ -35,15 +35,6 @@ class BinarySearchTree {
         }
         return node;
     }
-    Node search(Node node, int key) {
-        if(node == null) {
-            return null;
-        }
-        if(node.key == key) {
-            return node;
-        }
-        return (node.key < key) ? search(node.left, key) : search(node.right, key);
-    }
     Node getMin(Node node) {
         if(node == null) {
             return null;
@@ -53,17 +44,6 @@ class BinarySearchTree {
         }
         else {
             return getMin(node.left);
-        }
-    }
-    Node getMax(Node node) {
-        if(node == null) {
-            return null;
-        }
-        else if(node.right == null) {
-            return node;
-        }
-        else {
-            return getMax(node.right);
         }
     }
     Node delete(Node node, int key) {
@@ -94,23 +74,18 @@ class BinarySearchTree {
         }
         return 1 + Math.max(height(node.left), height(node.right));
     }
-    static boolean isBinaryTree(Node node) {
+    static boolean isCorrectBinarySearchTree(Node node) {
         if(node == null) {
-            return false;
+            return true;
         }
         else {
             if(node.left == null && node.right == null) {
                 return true;
             }
-            else if(node.left != null && node.right != null) {
-                if(node.right.key < node.left.key) {
+            else if(node.left != null && node.right != null && node.right.key < node.left.key) {
                     return false;
-                }
-                else return isBinaryTree(node.left) && isBinaryTree(node.right);
             }
-            else {
-                return isBinaryTree(node.left) || isBinaryTree(node.right);
-            }
+            return isCorrectBinarySearchTree(node.left) && isCorrectBinarySearchTree(node.right);
         }
     }
     void printTree(Node node) {

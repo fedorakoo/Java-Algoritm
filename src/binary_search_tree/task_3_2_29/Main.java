@@ -2,7 +2,7 @@ package binary_search_tree.task_3_2_29;
 
 import java.util.Scanner;
 
-import static binary_search_tree.task_3_2_29.BinarySearchTree.isBinaryTree;
+import static binary_search_tree.task_3_2_29.BinarySearchTree.isCorrectBinarySearchTree;
 
 public class Main {
     private static int inputIntLimit(int limit) {
@@ -69,13 +69,9 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    boolean isTree = isBinaryTree(tree.getParent());
-                    if (isTree) {
-                        System.out.println("Данная структрура является корректным бинарным деревом поиска");
-                    }
-                    else {
-                        System.out.println("Данная структрура не является корректным бинарным деревом поиска");
-                    }
+                    System.out.println(isCorrectBinarySearchTree(tree.getParent()) ? 
+                        "Данная структрура является корректным бинарным деревом поиска" :
+                        "Данная структрура не является корректным бинарным деревом поиска");
                     break;
                 }
                 default: {
