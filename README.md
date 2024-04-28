@@ -15,4 +15,4 @@
 **Применение сортировок** | [Упражнение 2.5.2](https://github.com/fedorakoo/Java-Algoritm/tree/using_sorts/src/using_sorts/task_2_5_2) | 1.25 ч.| 1.5 ч.
 | | [Упражнение 2.5.13](https://github.com/fedorakoo/Java-Algoritm/tree/using_sorts/src/using_sorts/task_2_5_13) | 1.5 ч.| 2.0 ч.
 | | [Упражнение 2.5.16](https://github.com/fedorakoo/Java-Algoritm/tree/using_sorts/src/using_sorts/task_2_5_16) | 2.0 ч.| 2.25 ч.
-| | [Упражнение 2.5.20](https://github.com/fedorakoo/Java-Algoritm/tree/using_sorts/src/using_sorts/task_2_5_20) | 2.0 ч.| 3.7 ч.
+| | [Упражнение 2.5.20](https://github.com/fedorakoo/Java-Algoritm/tree/using_sorts/src/using_sorts/task_2_5_20) | 2.0 ч.| 3.5 ч.
