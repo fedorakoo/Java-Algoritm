@@ -77,6 +77,7 @@ class BinarySearchTree {
     }
     Node delete(Node node, int key) {
         if(node == null) {
+            System.out.println("Элемент не найден");
             return null;
         }
         else if(key < node.key) {
@@ -86,6 +87,7 @@ class BinarySearchTree {
             node.right = delete(node.right, key);
         }
         else {
+            System.out.println("Элемент успешно удален");
             if(node.left == null || node.right == null) {
                 node = (node.left == null ? node.right : node.left);
             }
