@@ -38,8 +38,8 @@ public class Main {
         do {
             System.out.print("\n1. Добавить элемент\n" +
                     "2. Удалить элемент\n" +
-                    "3. Найти высоту дерева [height] \n" +
-                    "4. Найти высоту дерева [size]\n" +
+                    "3. Найти высоту дерева асимптотически худшим способом\n" +
+                    "4. Найти высоту дерева асимптотически лучшим способом\n" +
                     "5. Вывести все элементы дерева\n" +
                     "6. Завершить работу\n");
             System.out.print("Введите вариант продолжения: ");
@@ -58,11 +58,11 @@ public class Main {
                     break;
                 }
                 case 3: {
-                    System.out.print("Значение высоты дерева [height]: " + tree.height(tree.getParent()) + "\n");
+                    System.out.print("Значение высоты дерева: " + tree.height(tree.getParent()) + "\n");
                     break;
                 }
                 case 4: {
-                    System.out.print("Значение высоты дерева [size]: " + tree.size() + "\n");
+                    System.out.print("Значение высоты дерева: " + tree.size() + "\n");
                     break;
                 }
                 case 5: {

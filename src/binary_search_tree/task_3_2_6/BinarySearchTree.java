@@ -44,15 +44,6 @@ class BinarySearchTree {
         }
         return node;
     }
-    Node search(Node node, int key) {
-        if(node == null) {
-            return null;
-        }
-        if(node.key == key) {
-            return node;
-        }
-        return (node.key < key) ? search(node.left, key) : search(node.right, key);
-    }
     Node getMin(Node node) {
         if(node == null) {
             return null;
@@ -62,17 +53,6 @@ class BinarySearchTree {
         }
         else {
             return getMin(node.left);
-        }
-    }
-    Node getMax(Node node) {
-        if(node == null) {
-            return null;
-        }
-        else if(node.right == null) {
-            return node;
-        }
-        else {
-            return getMax(node.right);
         }
     }
     Node delete(Node node, int key) {
