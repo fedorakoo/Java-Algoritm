@@ -1,5 +1,6 @@
 package binary_search_tree.task_3_2_21;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 class BinarySearchTree {
@@ -143,7 +144,7 @@ class BinarySearchTree {
     int size() {
         return size;
     }
-    Random random = new Random();
+    Random random = new SecureRandom();
     public Node getParent() {
         return parent;
     }
