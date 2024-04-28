@@ -1,37 +1,11 @@
 package binary_search_tree.task_3_2_10;
 
 import java.util.List;
-import java.util.Scanner;
+
+import static binary_search_tree.task_3_2_10.Input.inputInt;
+import static binary_search_tree.task_3_2_10.Input.inputIntLimit;
 
 public class Main {
-    private static int inputIntLimit(int limit) {
-        Scanner in = new Scanner(System.in);
-        String number;
-        number = in.nextLine();
-        while (!isNumberInteger(number) || Integer.parseInt(number) <= 0 || Integer.parseInt(number) > limit) {
-            System.out.print("Введите корректное значение повторно: ");
-            number = in.nextLine();
-        }
-        return Integer.parseInt(number);
-    }
-    private static int inputInt() {
-        Scanner in = new Scanner(System.in);
-        String number;
-        number = in.nextLine();
-        while (!isNumberInteger(number)) {
-            System.out.print("Введите корректное значение повторно: ");
-            number = in.nextLine();
-        }
-        return Integer.parseInt(number);
-    }
-    private static boolean isNumberInteger(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
     public static void main(String[] args) {
         System.out.println("Условие задания: Напишите клиент тестирования, включающий в себя функции min(), max(), floor(), ceiling(), select(), rank(), delete(), deleteMin(), deleteMax(), keys().");
         BinarySearchTree tree = new BinarySearchTree();
@@ -159,7 +133,6 @@ public class Main {
         } while (next != 15);
         System.out.println("Спасибо за внимание!");
     }
-    
     static void outputInputInformation() {
         System.out.print("Введите значение: ");
     }
