@@ -45,7 +45,7 @@ class BinarySearchTree {
         if(node.key == key) {
             return node;
         }
-        return (node.key < key) ? select(node.left, key) : select(node.right, key);
+        return (node.key > key) ? select(node.left, key) : select(node.right, key);
     }
     Node min(Node node) {
         if(node == null) {
@@ -93,11 +93,12 @@ class BinarySearchTree {
             for(int i = 0; i < queueRight.size(); i++) {
                 queue.add(queueRight.get(i));
             }
+            return queue;
         }
         else if(node.key > rightLimit) {
-            return keys(node.right, leftLimit, rightLimit);
+            keys(node.left, leftLimit, rightLimit);
         }
-        return keys(node.left, leftLimit, rightLimit);
+        return keys(node.right, leftLimit, rightLimit);
     }
     Node max(Node node) {
         if(node == null) {
@@ -132,53 +133,31 @@ class BinarySearchTree {
         }
         return node;
     }
-    Node floor(Node node, int key) {
-        if(node == null) {
-            return null;
+    int floor(Node node, int key) {
+        if (node == null)
+            return -1;
+        if (node.key == key) {
+            return node.key;
         }
-        else if(key == node.key) {
-            return node;
+        if (node.key > key) {
+            return floor(node.left, key);
         }
-        else if(key < node.key) {
-            if(node.left == null) {
-                return node;
-            }
-            else {
-                return floor(node.left, key);
-            }
-        }
-        else {
-            if(node.right == null) {
-                return node;
-            }
-            else {
-                return floor(node.right, key);
-            }
-        }
+        int fl = floor(node.right, key);
+        return (fl <= key && fl != -1) ? fl : node.key;
     }
-    Node ceiling(Node node, int key) {
-        if(node == null) {
-            return null;
+    int ceiling(Node node, int key)
+    {
+        if (node == null) {
+            return -1;
         }
-        else if(key == node.key) {
-            return node;
+        if (node.key == key) {
+            return node.key;
         }
-        else if(key > node.key) {
-            if(node.left == null) {
-                return node;
-            }
-            else {
-                return floor(node.left, key);
-            }
+        else if (node.key < key) {
+            return ceiling(node.right, key);
         }
-        else {
-            if(node.right == null) {
-                return node;
-            }
-            else {
-                return floor(node.right, key);
-            }
-        }
+        int ceil = ceiling(node.left, key);
+        return (ceil >= key) ? ceil : node.key;
     }
     int height(Node node) {
         if(node == null) {

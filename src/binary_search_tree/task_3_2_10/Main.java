@@ -104,22 +104,22 @@ public class Main {
                 case 9: {
                     outputInputInformation();
                     int value = inputInt();
-                    if(tree.floor(tree.getParent(), value) == null) {
+                    if(tree.floor(tree.getParent(), value) == -1) {
                         System.out.print("Элемента нет\n");
                     }
                     else {
-                        System.out.print("Значение 'пола' элемента дерева: " + tree.floor(tree.getParent(), value).key + "\n");
+                        System.out.print("Значение 'пола' элемента дерева: " + tree.floor(tree.getParent(), value) + "\n");
                     }
                     break;
                 }
                 case 10: {
                     outputInputInformation();
                     int value = inputInt();
-                    if(tree.ceiling(tree.getParent(), value) == null) {
+                    if(tree.ceiling(tree.getParent(), value) == -1) {
                         System.out.print("Элемента нет\n");
                     }
                     else {
-                        System.out.print("Значение 'потолка' элемента дерева: " + tree.ceiling(tree.getParent(), value).key + "\n");
+                        System.out.print("Значение 'потолка' элемента дерева: " + tree.ceiling(tree.getParent(), value) + "\n");
                     }
                     break;
                 }
