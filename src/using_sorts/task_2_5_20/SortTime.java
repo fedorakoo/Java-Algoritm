@@ -33,10 +33,12 @@ public class SortTime {
         }
 
         int firstResult = 0;
+        int endSecond = minuteEndList.get(0);
         for (int i = 0; i < minuteStartList.size() - 1; ++i) {
-            int value = minuteStartList.get(i + 1) - minuteEndList.get(i);
+            endSecond = Math.max(minuteEndList.get(i), endSecond);
+            int value = minuteStartList.get(i + 1) - endSecond;
             if (value > firstResult) {
-                firstResult = value;
+                firstResult = Math.max(value, firstResult);
             }
         }
         
