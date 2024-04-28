@@ -1,38 +1,10 @@
 package binary_search_tree.task_3_2_29;
 
-import java.util.Scanner;
-
 import static binary_search_tree.task_3_2_29.BinarySearchTree.isCorrectBinarySearchTree;
+import static binary_search_tree.task_3_2_29.Input.inputInt;
+import static binary_search_tree.task_3_2_29.Input.inputIntLimit;
 
 public class Main {
-    private static int inputIntLimit(int limit) {
-        Scanner in = new Scanner(System.in);
-        String number;
-        number = in.nextLine();
-        while (!isNumberInteger(number) || Integer.parseInt(number) <= 0 || Integer.parseInt(number) > limit) {
-            System.out.print("Введите корректное значение повторно: ");
-            number = in.nextLine();
-        }
-        return Integer.parseInt(number);
-    }
-    private static int inputInt() {
-        Scanner in = new Scanner(System.in);
-        String number;
-        number = in.nextLine();
-        while (!isNumberInteger(number)) {
-            System.out.print("Введите корректное значение повторно: ");
-            number = in.nextLine();
-        }
-        return Integer.parseInt(number);
-    }
-    private static boolean isNumberInteger(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
     public static void main(String[] args) {
         System.out.println("Условие задания: Напишите рекурсивный метод isBinaryTree(), который принимает в качестве аргумента узер Node и возвращает true, если счетчик проверки узлов верен, и false в ином случаи.");
         BinarySearchTree tree = new BinarySearchTree();
