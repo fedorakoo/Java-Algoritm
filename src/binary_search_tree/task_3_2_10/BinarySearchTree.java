@@ -186,5 +186,4 @@ class BinarySearchTree {
         return parent;
     }
     private Node parent;
-   
 }
