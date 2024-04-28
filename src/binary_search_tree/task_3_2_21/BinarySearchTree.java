@@ -1,5 +1,7 @@
 package binary_search_tree.task_3_2_21;
 
+import java.util.Random;
+
 class BinarySearchTree {
     BinarySearchTree()
     {
@@ -111,10 +113,10 @@ class BinarySearchTree {
     }
     int randomKey(Node node) {
         int height = size();
-        int randHeight = (int)(Math.random() * height);
+        int randHeight = random.nextInt(0,  height);
         for(int i = 0; i < randHeight; i++) {
             if(numberChilt(node) == 2) {
-                int randChild = (int)(Math.random() * 2) + 1;
+                int randChild = random.nextInt(1,  3);
                 if(randChild == 1) {
                     node = node.left;
                 }
@@ -141,7 +143,7 @@ class BinarySearchTree {
     int size() {
         return size;
     }
-
+    Random random = new Random();
     public Node getParent() {
         return parent;
     }
