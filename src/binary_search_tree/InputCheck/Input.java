@@ -1,4 +1,4 @@
-package binary_search_tree.task_3_2_6;
+package binary_search_tree.InputCheck;
 
 import java.util.Scanner;
 
