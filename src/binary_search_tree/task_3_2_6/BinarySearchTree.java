@@ -13,7 +13,7 @@ class BinarySearchTree {
             this.key = key;
         }
     }
-    private void resetvisitedNodeCount() {
+    private void resetVisitedNodeCount() {
         size = Math.max(size, visitedNodeCount + 1);
         visitedNodeCount = 1;
     }
@@ -24,7 +24,7 @@ class BinarySearchTree {
         }
         else if (key < node.key) {
             if(node.left == null) {
-                resetvisitedNodeCount();
+                resetVisitedNodeCount();
                 node.left = new Node(key);
             }
             else {
@@ -34,7 +34,7 @@ class BinarySearchTree {
         }
         else {
             if(node.right == null) {
-                resetvisitedNodeCount();
+                resetVisitedNodeCount();
                 node.right = new Node(key);
             }
             else {
