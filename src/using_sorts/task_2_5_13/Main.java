@@ -2,8 +2,6 @@ package using_sorts.task_2_5_13;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
 
 import static using_sorts.task_2_5_13.Input.*;
 

@@ -5,6 +5,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Input {
+    private Input() {
+        
+    }
     public static String inputName(Map<String, Double> map) {
         Scanner in = new Scanner(System.in);
         String name = in.nextLine();
