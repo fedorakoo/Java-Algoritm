@@ -12,10 +12,9 @@ public class LPT {
 
     public static String orderOfExecution(Map<String, Double> unsortedMap) {
         StringBuilder bld = new StringBuilder();
-
+        
         List<Map.Entry<String, Double>> list = new ArrayList<>(unsortedMap.entrySet());
         list.sort(Map.Entry.<String, Double>comparingByValue().reversed());
-
         Map<String, Double> sortedMap = new LinkedHashMap<>();
         for (Map.Entry<String, Double> entry : list) {
             sortedMap.put(entry.getKey(), entry.getValue());
