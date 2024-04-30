@@ -35,7 +35,7 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    System.out.print("Значение высоты дерева: " + tree.size() + "\n");
+                    System.out.print("Значение высоты дерева: " + tree.getFastHeight() + "\n");
                     break;
                 }
                 case 5: {
