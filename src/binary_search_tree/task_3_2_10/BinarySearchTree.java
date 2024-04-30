@@ -1,7 +1,6 @@
 package binary_search_tree.task_3_2_10;
 
 import java.util.*;
-import java.util.List;
 
 class BinarySearchTree {
     BinarySearchTree()
@@ -16,30 +15,23 @@ class BinarySearchTree {
             this.key = key;
         }
     }
+    
     Node insert(Node node, int key) {
-        if(node == null) {
-            node = new Node(key);
-        }
-        else if (key < node.key) {
-            if(node.left == null) {
-                node.left = new Node(key);
-            }
-            else {
-                insert(node.left, key);
-            }
-        }
-        else {
-            if(node.right == null) {
-                node.right = new Node(key);
-            }
-            else {
-                insert(node.right, key);
-            }
+        if (node == null) {
+            return new Node(key);
+        } else if (key == node.key) {
+            System.out.println("Узел с ключом " + key + " уже существует");
+            return node;
+        } else if (key < node.key) {
+            node.left = insert(node.left, key);
+        } else {
+            node.right = insert(node.right, key);
         }
         return node;
     }
     Node select(Node node, int key) {
         if(node == null) {
+            System.out.println("Элемент не найден");
             return null;
         }
         if(node.key == key) {
@@ -73,10 +65,22 @@ class BinarySearchTree {
         }
     }
     void deleteMin() {
-        parent = delete(parent, min(parent).key);
+        if(min(parent) == null) {
+            System.out.println("Минимального элемента нет");
+        }
+        else {
+            System.out.println("Минимальный элемент: " + max(parent).key);
+            parent = delete(parent, min(parent).key);
+        }
     }
     void deleteMax() {
-        parent = delete(parent, max(parent).key);
+        if(max(parent) == null) {
+            System.out.println("Максимального элемента нет");
+        }
+        else {
+            System.out.println("Максимальный элемент: " + max(parent).key);
+            parent = delete(parent, max(parent).key);
+        }
     }
     List<Integer> keys(Node node, int leftLimit, int rightLimit) {
         List<Integer> queue = new LinkedList<>();
@@ -113,6 +117,7 @@ class BinarySearchTree {
     }
     Node delete(Node node, int key) {
         if(node == null) {
+            System.out.println("Элемент не найден");
             return null;
         }
         else if(key < node.key) {
@@ -122,6 +127,7 @@ class BinarySearchTree {
             node.right = delete(node.right, key);
         }
         else {
+            System.out.println("Элемент успешно удален");
             if(node.left == null || node.right == null) {
                 node = (node.left == null ? node.right : node.left);
             }
@@ -133,6 +139,7 @@ class BinarySearchTree {
         }
         return node;
     }
+   
     int floor(Node node, int key) {
         if (node == null)
             return -1;
@@ -173,11 +180,43 @@ class BinarySearchTree {
             return 1 + size(node.left) + size(node.right);
         }
     }
-    void printTree(Node node) {
-        if(node == null) return;
-        printTree(node.left);
-        System.out.print(node.key + " ");
-        printTree(node.right);
+    public static void printTree(Node node) {
+        Stack globalStack = new Stack();
+        globalStack.push(node);
+        int gaps = 32;
+        boolean isRowEmpty = false;
+        String separator = "-----------------------------------------------------------------";
+        System.out.println(separator);
+        while (!isRowEmpty) {
+            Stack localStack = new Stack();
+            isRowEmpty = true;
+
+            for (int j = 0; j < gaps; j++)
+                System.out.print(' ');
+            while (!globalStack.isEmpty()) {
+                Node temp = (Node)globalStack.pop();
+                if (temp != null) {
+                    System.out.print(temp.key);
+                    localStack.push(temp.left);
+                    localStack.push(temp.right);
+                    if (temp.left != null || temp.right != null) {
+                        isRowEmpty = false;
+                    }
+                }
+                else {
+                    System.out.print("__");
+                    localStack.push(null);
+                    localStack.push(null);
+                }
+                for (int j = 0; j < gaps * 2 - 2; j++)
+                    System.out.print(' ');
+            }
+            System.out.println();
+            gaps /= 2;
+            while (!localStack.isEmpty())
+                globalStack.push(localStack.pop());
+        }
+        System.out.println(separator);
     }
     void setParent(Node parent) {
         this.parent = parent;

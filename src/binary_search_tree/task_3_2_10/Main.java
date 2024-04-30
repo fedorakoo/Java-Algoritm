@@ -5,7 +5,6 @@ import java.util.List;
 import static binary_search_tree.InputCheck.Input.inputInt;
 import static binary_search_tree.InputCheck.Input.inputIntLimit;
 
-
 public class Main {
     public static void main(String[] args) {
         System.out.println("Условие задания: Напишите клиент тестирования, включающий в себя функции min(), max(), floor(), ceiling(), select(), rank(), delete(), deleteMin(), deleteMax(), keys().");
@@ -117,20 +116,26 @@ public class Main {
                     System.out.print("Введите значение правого ограничения: ");
                     int valueRight = inputInt();
                     List<Integer> result = tree.keys(tree.getParent(), valueLeft, valueRight);
-                    System.out.print("Список элементов: ");
-                    for(int i = 0; i < result.size(); i++) {
-                        System.out.print(result.get(i) + " ");
+                    if(result.isEmpty()) {
+                        System.out.print("Элементов в заданном диапозоне нет");
+                    }
+                    else {
+                        System.out.print("Список элементов: ");
+                        for (int i = 0; i < result.size(); i++) {
+                            System.out.print(result.get(i) + " ");
+                        }
                     }
                     break;
                 }
                 case 14: {
-                    tree.printTree(tree.getParent());
+                    BinarySearchTree.printTree(tree.getParent());
                     break;
                 }
                 default: {
                     break;
                 }
             }
+            System.out.println();
         } while (next != 15);
         System.out.println("Спасибо за внимание!");
     }
