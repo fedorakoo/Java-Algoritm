@@ -2,7 +2,7 @@ package binary_search_tree.task_3_2_6;
 
 import java.util.Stack;
 
-class BinarySearchTree {
+public class BinarySearchTree {
     BinarySearchTree() 
     {
         
@@ -78,31 +78,31 @@ class BinarySearchTree {
         }
         return 1 + Math.max(height(node.left), height(node.right));
     }
-    public void printTree(Node node) {
+    public static void printTree(Node node) {
         Stack globalStack = new Stack();
         globalStack.push(node);
         int gaps = 32;
         boolean isRowEmpty = false;
         String separator = "-----------------------------------------------------------------";
-        System.out.println(separator);// черта для указания начала нового дерева
+        System.out.println(separator);
         while (!isRowEmpty) {
-            Stack localStack = new Stack(); // локальный стек для задания потомков элемента
+            Stack localStack = new Stack();
             isRowEmpty = true;
 
             for (int j = 0; j < gaps; j++)
                 System.out.print(' ');
-            while (!globalStack.isEmpty()) { // покуда в общем стеке есть элементы
-                Node temp = (Node) globalStack.pop(); // берем следующий, при этом удаляя его из стека
+            while (!globalStack.isEmpty()) {
+                Node temp = (Node) globalStack.pop();
                 if (temp != null) {
-                    System.out.print(temp.key); // выводим его значение в консоли
-                    localStack.push(temp.left);// соохраняем в локальный стек, наследники текущего элемента
+                    System.out.print(temp.key);
+                    localStack.push(temp.left);
                     localStack.push(temp.right);
                     if (temp.left != null || temp.right != null) {
                         isRowEmpty = false;
                     }
                 }
                 else {
-                    System.out.print("__");// - если элемент пустой
+                    System.out.print("__");
                     localStack.push(null);
                     localStack.push(null);
                 }
@@ -110,11 +110,11 @@ class BinarySearchTree {
                     System.out.print(' ');
             }
             System.out.println();
-            gaps /= 2;// при переходе на следующий уровень расстояние между элементами каждый раз уменьшается
+            gaps /= 2;
             while (!localStack.isEmpty())
-                globalStack.push(localStack.pop()); // перемещаем все элементы из локального стека в глобальный
+                globalStack.push(localStack.pop());
         }
-        System.out.println(separator);// подводим черту
+        System.out.println(separator);
     }
     Node getParent() {
         return parent;

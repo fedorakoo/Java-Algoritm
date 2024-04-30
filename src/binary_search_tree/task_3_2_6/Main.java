@@ -40,7 +40,7 @@ public class Main {
                 }
                 case 5: {
                     System.out.print("Элементы дерева: ");
-                    tree.printTree(tree.getParent());
+                    BinarySearchTree.printTree(tree.getParent());
                     break;
                 }
                 default: {
