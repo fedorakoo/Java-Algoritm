@@ -4,8 +4,9 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class RedBlackTree {
-    private final  boolean RED = false;
-    private final boolean BLACK = true;
+    private final  boolean Red = false;
+    
+    private final boolean Black = true;
     private final Node nil = new Node(-1);
     private Node parent = nil;
 
@@ -15,7 +16,7 @@ public class RedBlackTree {
 
     public class Node {
         int key;
-        boolean color = BLACK;
+        boolean color = Black;
         Node left = nil;
         Node right = nil;
         Node parent = nil;
@@ -30,10 +31,10 @@ public class RedBlackTree {
         Node temp = parent;
         if (parent == nil) {
             parent = node;
-            node.color = BLACK;
+            node.color = Black;
             node.parent = nil;
         } else {
-            node.color = RED;
+            node.color = Red;
             while (true) {
                 if (node.key < temp.key) {
                     if (temp.left == nil) {
@@ -58,15 +59,15 @@ public class RedBlackTree {
     }
 
     public void fixTree(Node node) {
-        while (node.parent.color == RED) {
+        while (node.parent.color == Red) {
             Node uncle = nil;
             if (node.parent == node.parent.parent.left) {
                 uncle = node.parent.parent.right;
 
-                if (uncle != nil && uncle.color == RED) {
-                    node.parent.color = BLACK;
-                    uncle.color = BLACK;
-                    node.parent.parent.color = RED;
+                if (uncle != nil && uncle.color == Red) {
+                    node.parent.color = Black;
+                    uncle.color = Black;
+                    node.parent.parent.color = Red;
                     node = node.parent.parent;
                     continue;
                 }
@@ -75,15 +76,15 @@ public class RedBlackTree {
                     node = node.parent;
                     rotateLeft(node);
                 }
-                node.parent.color = BLACK;
-                node.parent.parent.color = RED;
+                node.parent.color = Black;
+                node.parent.parent.color = Red;
                 rotateRight(node.parent.parent);
             } else {
                 uncle = node.parent.parent.left;
-                if (uncle != nil && uncle.color == RED) {
-                    node.parent.color = BLACK;
-                    uncle.color = BLACK;
-                    node.parent.parent.color = RED;
+                if (uncle != nil && uncle.color == Red) {
+                    node.parent.color = Black;
+                    uncle.color = Black;
+                    node.parent.parent.color = Red;
                     node = node.parent.parent;
                     continue;
                 }
@@ -92,12 +93,12 @@ public class RedBlackTree {
                     node = node.parent;
                     rotateRight(node);
                 }
-                node.parent.color = BLACK;
-                node.parent.parent.color = RED;
+                node.parent.color = Black;
+                node.parent.parent.color = Red;
                 rotateLeft(node.parent.parent);
             }
         }
-        parent.color = BLACK;
+        parent.color = Black;
     }
 
     void rotateLeft(Node node) {
