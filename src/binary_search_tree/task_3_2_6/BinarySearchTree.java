@@ -1,6 +1,7 @@
 package binary_search_tree.task_3_2_6;
 
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class BinarySearchTree {
     BinarySearchTree() 
@@ -79,20 +80,19 @@ public class BinarySearchTree {
         return 1 + Math.max(height(node.left), height(node.right));
     }
     public static void printTree(Node node) {
-        Stack globalStack = new Stack();
+        Deque<Node> globalStack = new LinkedList<>();
         globalStack.push(node);
         int gaps = 32;
         boolean isRowEmpty = false;
         String separator = "-----------------------------------------------------------------";
         System.out.println(separator);
         while (!isRowEmpty) {
-            Stack localStack = new Stack();
+            Deque<Node> localStack = new LinkedList<>();
             isRowEmpty = true;
-
             for (int j = 0; j < gaps; j++)
                 System.out.print(' ');
             while (!globalStack.isEmpty()) {
-                Node temp = (Node) globalStack.pop();
+                Node temp = globalStack.pop();
                 if (temp != null) {
                     System.out.print(temp.key);
                     localStack.push(temp.left);

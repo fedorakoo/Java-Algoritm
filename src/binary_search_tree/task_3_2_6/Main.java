@@ -39,7 +39,6 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    System.out.print("Элементы дерева: ");
                     BinarySearchTree.printTree(tree.getParent());
                     break;
                 }
