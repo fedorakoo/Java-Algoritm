@@ -89,14 +89,8 @@ class BinarySearchTree {
         }
         if(node.key >= leftLimit && node.key <= rightLimit) {
             queue.add(node.key);
-            List<Integer> queueLeft = keys(node.left, leftLimit, rightLimit);
-            List<Integer> queueRight = keys(node.right, leftLimit, rightLimit);
-            for(int i = 0; i < queueLeft.size(); i++) {
-                queue.add(queueLeft.get(i));
-            }
-            for(int i = 0; i < queueRight.size(); i++) {
-                queue.add(queueRight.get(i));
-            }
+            queue.addAll(keys(node.left, leftLimit, rightLimit));
+            queue.addAll(keys(node.right, leftLimit, rightLimit));
             return queue;
         }
         else if(node.key > rightLimit) {
