@@ -1,8 +1,8 @@
 package binary_search_tree.task_3_2_29;
 
 import static binary_search_tree.task_3_2_29.BinarySearchTree.isCorrectBinarySearchTree;
-import static binary_search_tree.InputCheck.Input.inputInt;
-import static binary_search_tree.InputCheck.Input.inputIntLimit;
+import static binary_search_tree.input.Input.inputInt;
+import static binary_search_tree.input.Input.inputIntLimit;
 
 
 public class Main {
@@ -37,7 +37,6 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    System.out.print("Элементы дерева: ");
                     tree.printTree(tree.getParent());
                     break;
                 }
