@@ -37,7 +37,7 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    tree.printTree(tree.getParent());
+                    BinarySearchTree.printTree(tree.getParent());
                     break;
                 }
                 case 5: {
