@@ -1,8 +1,8 @@
 package binary_search_tree.task_3_2_29;
 
 import static binary_search_tree.task_3_2_29.BinarySearchTree.isCorrectBinarySearchTree;
-import static binary_search_tree.InputCheck.Input.inputInt;
-import static binary_search_tree.InputCheck.Input.inputIntLimit;
+import static binary_search_tree.input.Input.inputInt;
+import static binary_search_tree.input.Input.inputIntLimit;
 
 
 public class Main {
@@ -37,12 +37,11 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    System.out.print("Элементы дерева: ");
-                    tree.printTree(tree.getParent());
+                    BinarySearchTree.printTree(tree.getParent());
                     break;
                 }
                 case 5: {
-                    System.out.println(isCorrectBinarySearchTree(tree.getParent()) ? 
+                    System.out.println(isCorrectBinarySearchTree(tree.getParent(), BinarySearchTree.min(tree.getParent()).key, BinarySearchTree.max(tree.getParent()).key) ?
                         "Данная структрура является корректным бинарным деревом поиска" :
                         "Данная структрура не является корректным бинарным деревом поиска");
                     break;
