@@ -21,27 +21,15 @@ class BinarySearchTree {
     Node insert(Node node, int key) {
         if (node == null) {
             return new Node(key);
-        } else if (key == node.key) {
-            System.out.println("Узел с ключом " + key + " уже существует");
-            return node;
-        } else if (key < node.key) {
+        }
+        else if (key < node.key) {
             node.left = insert(node.left, key);
-        } else {
+        }
+        else {
             node.right = insert(node.right, key);
         }
         return node;
     }
-
-    Node getMin(Node node) {
-        if (node == null) {
-            return null;
-        } else if (node.left == null) {
-            return node;
-        } else {
-            return getMin(node.left);
-        }
-    }
-
     Node delete(Node node, int key) {
         if (node == null) {
             System.out.println("Элемент не найден");
@@ -56,14 +44,15 @@ class BinarySearchTree {
                 node = (node.left == null ? node.right : node.left);
             } else {
                 Node newNode = min(node.right);
-                node.key = newNode.key;
+                if(newNode != null)
+                    node.key = newNode.key;
                 node.right = delete(node.right, node.key);
             }
         }
         return node;
     }
 
-    Node min(Node node) {
+    static Node min(Node node) {
         if (node == null) {
             return null;
         } else if (node.left == null) {
@@ -78,19 +67,15 @@ class BinarySearchTree {
         }
         return 1 + Math.max(height(node.left), height(node.right));
     }
-    static boolean isCorrectBinarySearchTree(Node node) {
-        if(node == null) {
+    static boolean isCorrectBinarySearchTree(Node node, int leftValue, int rightValue) {
+        if (node == null)
             return true;
-        }
-        else {
-            if(node.left == null && node.right == null) {
-                return true;
-            }
-            else if(node.left != null && node.right != null && node.right.key < node.left.key) {
-                    return false;
-            }
-            return isCorrectBinarySearchTree(node.left) && isCorrectBinarySearchTree(node.right);
-        }
+
+        if (node.key < leftValue || node.key > rightValue)
+            return false;
+
+        return (isCorrectBinarySearchTree(node.left, leftValue, node.key-1) &&
+                isCorrectBinarySearchTree(node.right, node.key+1, rightValue));
     }
     public static void printTree(Node node) {
         Deque<Node> globalStack = new LinkedList<>();
@@ -126,6 +111,17 @@ class BinarySearchTree {
                 globalStack.push(localStack.pop());
         }
         System.out.println(separator);
+    }
+    static Node max(Node node) {
+        if(node == null) {
+            return null;
+        }
+        else if(node.right == null) {
+            return node;
+        }
+        else {
+            return max(node.right);
+        }
     }
     public Node getParent() {
         return parent;

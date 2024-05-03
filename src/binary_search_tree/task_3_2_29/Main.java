@@ -41,7 +41,7 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    System.out.println(isCorrectBinarySearchTree(tree.getParent()) ? 
+                    System.out.println(isCorrectBinarySearchTree(tree.getParent(), BinarySearchTree.min(tree.getParent()).key, BinarySearchTree.max(tree.getParent()).key) ?
                         "Данная структрура является корректным бинарным деревом поиска" :
                         "Данная структрура не является корректным бинарным деревом поиска");
                     break;
