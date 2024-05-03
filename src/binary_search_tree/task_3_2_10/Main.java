@@ -1,9 +1,10 @@
 package binary_search_tree.task_3_2_10;
 
+import java.util.Collections;
 import java.util.List;
 
-import static binary_search_tree.InputCheck.Input.inputInt;
-import static binary_search_tree.InputCheck.Input.inputIntLimit;
+import static binary_search_tree.input.Input.inputInt;
+import static binary_search_tree.input.Input.inputIntLimit;
 
 public class Main {
     public static void main(String[] args) {
@@ -50,21 +51,11 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    if(tree.min(tree.getParent()) == null) {
-                        System.out.print("Минимального элемента нет\n");
-                    }
-                    else {
-                        System.out.print("Значение минимального элемента дерева: " + tree.min(tree.getParent()).key + "\n");
-                    }
+                    outputMinElement(tree);
                     break;
                 }
                 case 6: {
-                    if(tree.min(tree.getParent()) == null) {
-                        System.out.print("Максимального элемента нет\n");
-                    }
-                    else {
-                        System.out.print("Значение максимального элемента дерева: " + tree.max(tree.getParent()).key + "\n");
-                    }
+                    outputMaxElement(tree);
                     break;
                 }
                 case 7: {
@@ -76,25 +67,11 @@ public class Main {
                     break;
                 }
                 case 9: {
-                    outputInputInformation();
-                    int value = inputInt();
-                    if(tree.floor(tree.getParent(), value) == -1) {
-                        System.out.print("Элемента нет\n");
-                    }
-                    else {
-                        System.out.print("Значение 'пола' элемента дерева: " + tree.floor(tree.getParent(), value) + "\n");
-                    }
+                    outputTreeFlour(tree);
                     break;
                 }
                 case 10: {
-                    outputInputInformation();
-                    int value = inputInt();
-                    if(tree.ceiling(tree.getParent(), value) == -1) {
-                        System.out.print("Элемента нет\n");
-                    }
-                    else {
-                        System.out.print("Значение 'потолка' элемента дерева: " + tree.ceiling(tree.getParent(), value) + "\n");
-                    }
+                    outputCeilingElement(tree);
                     break;
                 }
                 case 11: {
@@ -111,20 +88,7 @@ public class Main {
                     break;
                 }
                 case 13: {
-                    System.out.print("Введите значение левого ограничения: ");
-                    int valueLeft = inputInt();
-                    System.out.print("Введите значение правого ограничения: ");
-                    int valueRight = inputInt();
-                    List<Integer> result = tree.keys(tree.getParent(), valueLeft, valueRight);
-                    if(result.isEmpty()) {
-                        System.out.print("Элементов в заданном диапозоне нет");
-                    }
-                    else {
-                        System.out.print("Список элементов: ");
-                        for (int i = 0; i < result.size(); i++) {
-                            System.out.print(result.get(i) + " ");
-                        }
-                    }
+                    outputKeysTree(tree);
                     break;
                 }
                 case 14: {
@@ -141,6 +105,59 @@ public class Main {
     }
     static void outputInputInformation() {
         System.out.print("Введите значение: ");
+    }
+    static void outputMinElement(BinarySearchTree tree) {
+        if(tree.min(tree.getParent()) == null) {
+            System.out.print("Минимального элемента нет\n");
+        }
+        else {
+            System.out.print("Значение минимального элемента дерева: " + tree.min(tree.getParent()).key + "\n");
+        }
+    }
+    static void outputMaxElement(BinarySearchTree tree) {
+        if(tree.min(tree.getParent()) == null) {
+            System.out.print("Максимального элемента нет\n");
+        }
+        else {
+            System.out.print("Значение максимального элемента дерева: " + tree.max(tree.getParent()).key + "\n");
+        }
+    }
+    static void outputTreeFlour(BinarySearchTree tree) {
+        outputInputInformation();
+        int value = inputInt();
+        if(tree.floor(tree.getParent(), value) == -1) {
+            System.out.print("Элемента нет\n");
+        }
+        else {
+            System.out.print("Значение 'пола' элемента дерева: " + tree.floor(tree.getParent(), value) + "\n");
+        }
+    }
+    static void outputCeilingElement(BinarySearchTree tree) {
+        outputInputInformation();
+        int value = inputInt();
+        if(tree.ceiling(tree.getParent(), value) == -1) {
+            System.out.print("Элемента нет\n");
+        }
+        else {
+            System.out.print("Значение 'потолка' элемента дерева: " + tree.ceiling(tree.getParent(), value) + "\n");
+        }
+    }
+    static void outputKeysTree(BinarySearchTree tree) {
+        System.out.print("Введите значение левого ограничения: ");
+        int valueLeft = inputInt();
+        System.out.print("Введите значение правого ограничения: ");
+        int valueRight = inputInt();
+        List<Integer> result = tree.keys(tree.getParent(), valueLeft, valueRight);
+        Collections.sort(result);
+        if(result.isEmpty()) {
+            System.out.print("Элементов в заданном диапазоне нет");
+        }
+        else {
+            System.out.print("Список элементов: ");
+            for (int i = 0; i < result.size(); i++) {
+                System.out.print(result.get(i) + " ");
+            }
+        }
     }
 }
 

@@ -15,7 +15,7 @@ class BinarySearchTree {
             this.key = key;
         }
     }
-    
+
     Node insert(Node node, int key) {
         if (node == null) {
             return new Node(key);
@@ -87,22 +87,16 @@ class BinarySearchTree {
         if (node == null) {
             return queue;
         }
-        if(node.key >= leftLimit && node.key <= rightLimit) {
+        if (node.key >= leftLimit && node.key <= rightLimit) {
             queue.add(node.key);
-            List<Integer> queueLeft = keys(node.left, leftLimit, rightLimit);
-            List<Integer> queueRight = keys(node.right, leftLimit, rightLimit);
-            for(int i = 0; i < queueLeft.size(); i++) {
-                queue.add(queueLeft.get(i));
-            }
-            for(int i = 0; i < queueRight.size(); i++) {
-                queue.add(queueRight.get(i));
-            }
-            return queue;
+            queue.addAll(keys(node.left, leftLimit, rightLimit));
+            queue.addAll(keys(node.right, leftLimit, rightLimit));
+        } else if (node.key < leftLimit) {
+            queue.addAll(keys(node.right, leftLimit, rightLimit));
+        } else if (node.key > rightLimit) {
+            queue.addAll(keys(node.left, leftLimit, rightLimit));
         }
-        else if(node.key > rightLimit) {
-            keys(node.left, leftLimit, rightLimit);
-        }
-        return keys(node.right, leftLimit, rightLimit);
+        return queue;
     }
     Node max(Node node) {
         if(node == null) {
@@ -139,7 +133,7 @@ class BinarySearchTree {
         }
         return node;
     }
-   
+
     int floor(Node node, int key) {
         if (node == null)
             return -1;
@@ -181,27 +175,25 @@ class BinarySearchTree {
         }
     }
     public static void printTree(Node node) {
-        Stack globalStack = new Stack();
+        Deque<Node> globalStack = new LinkedList<>();
         globalStack.push(node);
         int gaps = 32;
         boolean isRowEmpty = false;
         String separator = "-----------------------------------------------------------------";
         System.out.println(separator);
-        while (!isRowEmpty) {
-            Stack localStack = new Stack();
+        while (!isRowEmpty) { Deque<Node> localStack = new LinkedList<>();
             isRowEmpty = true;
-
             for (int j = 0; j < gaps; j++)
                 System.out.print(' ');
-            while (!globalStack.isEmpty()) {
-                Node temp = (Node)globalStack.pop();
+            while (!globalStack.isEmpty())
+            {
+                Node temp = globalStack.pop();
                 if (temp != null) {
                     System.out.print(temp.key);
                     localStack.push(temp.left);
                     localStack.push(temp.right);
-                    if (temp.left != null || temp.right != null) {
-                        isRowEmpty = false;
-                    }
+
+                    isRowEmpty = false;
                 }
                 else {
                     System.out.print("__");
