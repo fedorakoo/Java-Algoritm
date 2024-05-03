@@ -1,6 +1,8 @@
 package binary_search_tree.task_3_2_21;
 
 import java.security.SecureRandom;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Random;
 
 class BinarySearchTree {
@@ -16,107 +18,101 @@ class BinarySearchTree {
             this.key = key;
         }
     }
-    private void resetvisitedNodeCount() {
-        size = Math.max(size, visitedNodeCount + 1);
-        visitedNodeCount = 1;
-    }
     Node insert(Node node, int key) {
-        if(node == null) {
-            size = 1;
-            node = new Node(key);
-        }
-        else if (key < node.key) {
-            if(node.left == null) {
-                resetvisitedNodeCount();
-                node.left = new Node(key);
-            }
-            else {
-                visitedNodeCount++;
-                insert(node.left, key);
-            }
-        }
-        else {
-            if(node.right == null) {
-                resetvisitedNodeCount();
-                node.right = new Node(key);
-            }
-            else {
-                visitedNodeCount++;
-                insert(node.right, key);
-            }
-        }
-        return node;
-    }
-    Node getMin(Node node) {
-        if(node == null) {
-            return null;
-        }
-        else if(node.left == null) {
+        if (node == null) {
+            return new Node(key);
+        } else if (key == node.key) {
+            System.out.println("Узел с ключом " + key + " уже существует");
             return node;
+        } else if (key < node.key) {
+            node.left = insert(node.left, key);
+        } else {
+            node.right = insert(node.right, key);
         }
-        else {
-            return getMin(node.left);
-        }
-    }
-    Node delete(Node node, int key) {
-        if(node == null) {
-            return null;
-        }
-        else if(key < node.key) {
-            node.left = delete(node.left, key);
-        }
-        else if(key > node.key) {
-            node.right = delete(node.right, key);
-        }
-        else {
-            if(node.left == null || node.right == null) {
-                node = (node.left == null ? node.right : node.left);
-            }
-            else {
-                Node newNode = getMin(node.right);
-                node.key = newNode.key;
-                node.right = delete(node.right, node.key);
-            }
-        }
-        size = height(node);
         return node;
     }
+   Node delete(Node node, int key) {
+       if(node == null) {
+           System.out.println("Элемент не найден");
+           return null;
+       }
+       else if(key < node.key) {
+           node.left = delete(node.left, key);
+       }
+       else if(key > node.key) {
+           node.right = delete(node.right, key);
+       }
+       else {
+           System.out.println("Элемент успешно удален");
+           if(node.left == null || node.right == null) {
+               node = (node.left == null ? node.right : node.left);
+           }
+           else {
+               Node newNode = min(node.right);
+               node.key = newNode.key;
+               node.right = delete(node.right, node.key);
+           }
+       }
+       return node;
+   }
+   Node min(Node node) {
+       if(node == null) {
+           return null;
+       }
+       else if(node.left == null) {
+           return node;
+       }
+       else {
+           return min(node.left);
+       }
+   }
     int height(Node node) {
         if(node == null) {
             return 0;
         }
         return 1 + Math.max(height(node.left), height(node.right));
     }
-    void printTree(Node node) {
-        if(node == null) return;
-        printTree(node.left);
-        System.out.print(node.key + " ");
-        printTree(node.right);
-    }
-    static boolean isBinaryTree(Node node) {
-        if(node == null) {
-            return false;
-        }
-        else {
-            if(node.left == null && node.right == null) {
-                return true;
-            }
-            else if(node.left != null && node.right != null) {
-                if(node.right.key < node.left.key) {
-                    return false;
+    public static void printTree(Node node) {
+        Deque<Node> globalStack = new LinkedList<>();
+        globalStack.push(node);
+        int gaps = 32;
+        boolean isRowEmpty = false;
+        String separator = "-----------------------------------------------------------------";
+        System.out.println(separator);
+        while (!isRowEmpty) { Deque<Node> localStack = new LinkedList<>();
+            isRowEmpty = true;
+            for (int j = 0; j < gaps; j++)
+                System.out.print(' ');
+            while (!globalStack.isEmpty())
+            {
+                Node temp = globalStack.pop();
+                if (temp != null) {
+                    System.out.print(temp.key);
+                    localStack.push(temp.left);
+                    localStack.push(temp.right);
+
+                    isRowEmpty = false;
                 }
-                else return isBinaryTree(node.left) && isBinaryTree(node.right);
+                else {
+                    System.out.print("__");
+                    localStack.push(null);
+                    localStack.push(null);
+                }
+                for (int j = 0; j < gaps * 2 - 2; j++)
+                    System.out.print(' ');
             }
-            else {
-                return isBinaryTree(node.left) || isBinaryTree(node.right);
-            }
+            System.out.println();
+            gaps /= 2;
+            while (!localStack.isEmpty())
+                globalStack.push(localStack.pop());
         }
+        System.out.println(separator);
     }
     int randomKey(Node node) {
-        int height = size();
+        int height = height(parent);
         int randHeight = random.nextInt(0,  height);
         for(int i = 0; i < randHeight; i++) {
-            if(numberChilt(node) == 2) {
+            if(numberChild(node) == 2) {
                 int randChild = random.nextInt(1,  3);
                 if(randChild == 1) {
                     node = node.left;
@@ -125,14 +121,14 @@ class BinarySearchTree {
                     node = node.right;
                 }
             }
-            else if(numberChilt(node) == 1) {
+            else if(numberChild(node) == 1) {
                 node = (node.left == null ? node.right : node.left);
             }
             else return node.key;
         }
         return node.key;
     }
-    int numberChilt(Node node) {
+    int numberChild(Node node) {
         if(node.left != null && node.right != null) {
             return 2;
         }
@@ -140,9 +136,6 @@ class BinarySearchTree {
             return 1;
         }
         return 0;
-    }
-    int size() {
-        return size;
     }
     Random random = new SecureRandom();
     public Node getParent() {
@@ -152,6 +145,4 @@ class BinarySearchTree {
         this.parent = parent;
     }
     private Node parent;
-    private int size;
-    private int visitedNodeCount = 1;
 }
