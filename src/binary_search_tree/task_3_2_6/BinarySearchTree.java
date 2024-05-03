@@ -86,18 +86,19 @@ public class BinarySearchTree {
         boolean isRowEmpty = false;
         String separator = "-----------------------------------------------------------------";
         System.out.println(separator);
-        while (!isRowEmpty) {
-            Deque<Node> localStack = new LinkedList<>();
+        while (!isRowEmpty) { Deque<Node> localStack = new LinkedList<>();
             isRowEmpty = true;
             for (int j = 0; j < gaps; j++)
                 System.out.print(' ');
-            while (!globalStack.isEmpty()) {
+            while (!globalStack.isEmpty())
+            {
                 Node temp = globalStack.pop();
                 if (temp != null) {
                     System.out.print(temp.key);
                     localStack.push(temp.left);
                     localStack.push(temp.right);
-                    isRowEmpty = !(temp.left != null || temp.right != null);
+
+                    isRowEmpty = false;
                 }
                 else {
                     System.out.print("__");
