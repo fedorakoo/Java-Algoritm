@@ -88,9 +88,7 @@ public class BinarySearchTree {
                     
                     localStack.push(temp.left);
                     localStack.push(temp.right);
-                    if (temp.left != null || temp.right != null) {
-                        isRowEmpty = false;
-                    }
+                    isRowEmpty = !(temp.left != null || temp.right != null);
                 }
                 else {
                     System.out.print("__");

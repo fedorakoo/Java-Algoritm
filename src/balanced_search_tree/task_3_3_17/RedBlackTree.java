@@ -4,8 +4,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class RedBlackTree {
-    private final  boolean RED = false;
-    private final boolean BLACK = true;
+    private static final boolean RED = false;
+    private static final boolean BLACK = true;
     private final Node nil = new Node(-1);
     private Node parent = nil;
 
@@ -33,73 +33,95 @@ public class RedBlackTree {
             node.color = BLACK;
             node.parent = nil;
         } else {
-            node.color = RED;
-            while (true) {
-                if (node.key < temp.key) {
-                    if (temp.left == nil) {
-                        temp.left = node;
-                        node.parent = temp;
-                        break;
-                    } else {
-                        temp = temp.left;
-                    }
-                } else if (node.key >= temp.key) {
-                    if (temp.right == nil) {
-                        temp.right = node;
-                        node.parent = temp;
-                        break;
-                    } else {
-                        temp = temp.right;
-                    }
+            updateInsertNode(node, temp);
+            fixTree(node);
+        }
+    }
+    void updateInsertNode(Node node, Node temp) {
+        node.color = RED;
+        boolean isDuty = true;
+        while (isDuty) {
+            if (node.key < temp.key) {
+                if (temp.left == nil) {
+                    temp.left = node;
+                    node.parent = temp;
+                    isDuty = false;
+                }
+                else {
+                    temp = temp.left;
+                }
+            } else  {
+                if (temp.right == nil) {
+                    temp.right = node;
+                    node.parent = temp;
+                    isDuty = false;
+                }
+                else {
+                    temp = temp.right;
                 }
             }
-            fixTree(node);
         }
     }
 
     public void fixTree(Node node) {
         while (node.parent.color == RED) {
-            Node uncle = nil;
+            Node uncle;
             if (node.parent == node.parent.parent.left) {
                 uncle = node.parent.parent.right;
-
-                if (uncle != nil && uncle.color == RED) {
+                boolean boolExpression = true;
+                if (firstCheckUncle(uncle)) {
                     node.parent.color = BLACK;
                     uncle.color = BLACK;
                     node.parent.parent.color = RED;
                     node = node.parent.parent;
-                    continue;
-                }
-                if (node == node.parent.right) {
-                    //Double rotation needed
+                    boolExpression = false;
+                } else if (node == node.parent.right) {
                     node = node.parent;
                     rotateLeft(node);
                 }
-                node.parent.color = BLACK;
-                node.parent.parent.color = RED;
-                rotateRight(node.parent.parent);
-            } else {
+                node = fixRotateRight(boolExpression, node);
+            } else if(node.parent.parent.left != null) {
                 uncle = node.parent.parent.left;
-                if (uncle != nil && uncle.color == RED) {
+                boolean boolExpression = true;
+                if (firstCheckUncle(uncle)) {
                     node.parent.color = BLACK;
                     uncle.color = BLACK;
                     node.parent.parent.color = RED;
                     node = node.parent.parent;
-                    continue;
+                    boolExpression = false;
                 }
                 if (node == node.parent.left) {
-                    //Double rotation needed
                     node = node.parent;
                     rotateRight(node);
                 }
-                node.parent.color = BLACK;
-                node.parent.parent.color = RED;
-                rotateLeft(node.parent.parent);
+                node = fixRotateLeft(boolExpression, node);
             }
+            else return;
         }
         parent.color = BLACK;
     }
 
+    boolean firstCheckUncle(Node uncle) {
+        return uncle != nil && uncle.color == RED;
+    }
+
+    Node fixRotateLeft(boolean boolExpression, Node node) {
+        if (boolExpression) {
+            node.parent.color = BLACK;
+            node.parent.parent.color = RED;
+            rotateLeft(node.parent.parent);
+        }
+        return node;
+    }
+
+    Node fixRotateRight(boolean boolExpression, Node node) {
+        if (boolExpression) {
+            node.parent.color = BLACK;
+            node.parent.parent.color = RED;
+            rotateRight(node.parent.parent);
+        }
+        return node;
+    }
     void rotateLeft(Node node) {
         if (node.parent != nil) {
             if (node == node.parent.left) {
@@ -165,17 +187,14 @@ public class RedBlackTree {
             while (!globalStack.isEmpty()) {
                 Node temp = globalStack.pop();
                 if (temp != null) {
-                    if(temp.key == -1) {
+                    if (temp.key == -1) {
                         System.out.print("__");
-                    }
-                    else {
+                    } else {
                         System.out.print(temp.key);
                     }
                     localStack.push(temp.left);
                     localStack.push(temp.right);
-                    if (temp.left != null || temp.right != null) {
-                        isRowEmpty = false;
-                    }
+                    isRowEmpty = !(temp.left != null || temp.right != null);
                 }
                 else {
                     System.out.print("__");
