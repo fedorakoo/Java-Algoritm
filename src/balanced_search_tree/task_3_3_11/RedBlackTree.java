@@ -33,72 +33,92 @@ public class RedBlackTree {
             node.color = BLACK;
             node.parent = nil;
         } else {
-            node.color = RED;
-            while (true) {
-                if (node.key < temp.key) {
-                    if (temp.left == nil) {
-                        temp.left = node;
-                        node.parent = temp;
-                        break;
-                    } else {
-                        temp = temp.left;
-                    }
-                } else if (node.key >= temp.key) {
-                    if (temp.right == nil) {
-                        temp.right = node;
-                        node.parent = temp;
-                        break;
-                    } else {
-                        temp = temp.right;
-                    }
-                }
-            }
+            updateInsertNode(node, temp);
             fixTree(node);
         }
     }
-
+    void updateInsertNode(Node node, Node temp) {
+        node.color = RED;
+        boolean isDuty = true;
+        while (isDuty) {
+            if (node.key < temp.key) {
+                if (temp.left == nil) {
+                    temp.left = node;
+                    node.parent = temp;
+                    isDuty = false;
+                }
+                else {
+                    temp = temp.left;
+                }
+            } else  {
+                if (temp.right == nil) {
+                    temp.right = node;
+                    node.parent = temp;
+                    isDuty = false;
+                }
+                else {
+                    temp = temp.right;
+                }
+            }
+        }
+    }
     public void fixTree(Node node) {
         while (node.parent.color == RED) {
             Node uncle;
-            uncle = nil;
             if (node.parent == node.parent.parent.left) {
                 uncle = node.parent.parent.right;
-
-                if (uncle != nil && uncle.color == RED) {
+                boolean boolExpression = true;
+                if (firstCheckUncle(uncle)) {
                     node.parent.color = BLACK;
                     uncle.color = BLACK;
                     node.parent.parent.color = RED;
                     node = node.parent.parent;
-                    continue;
-                }
-                if (node == node.parent.right) {
-                    //Double rotation needed
+                    boolExpression = false;
+                } else if (node == node.parent.right) {
                     node = node.parent;
                     rotateLeft(node);
                 }
-                node.parent.color = BLACK;
-                node.parent.parent.color = RED;
-                rotateRight(node.parent.parent);
+                node = fixRotateRight(boolExpression, node);
             } else {
                 uncle = node.parent.parent.left;
-                if (uncle != nil && uncle.color == RED) {
+                boolean boolExpression = true;
+                if (firstCheckUncle(uncle)) {
                     node.parent.color = BLACK;
                     uncle.color = BLACK;
                     node.parent.parent.color = RED;
                     node = node.parent.parent;
-                    continue;
+                    boolExpression = false;
                 }
                 if (node == node.parent.left) {
-                    //Double rotation needed
                     node = node.parent;
                     rotateRight(node);
                 }
-                node.parent.color = BLACK;
-                node.parent.parent.color = RED;
-                rotateLeft(node.parent.parent);
+                node = fixRotateLeft(boolExpression, node);
             }
         }
         parent.color = BLACK;
+    }
+
+    boolean firstCheckUncle(Node uncle) {
+        return uncle != nil && uncle.color == RED;
+    }
+
+    Node fixRotateLeft(boolean boolExpression, Node node) {
+        if (boolExpression) {
+            node.parent.color = BLACK;
+            node.parent.parent.color = RED;
+            rotateLeft(node.parent.parent);
+        }
+        return node;
+    }
+
+    Node fixRotateRight(boolean boolExpression, Node node) {
+        if (boolExpression) {
+            node.parent.color = BLACK;
+            node.parent.parent.color = RED;
+            rotateRight(node.parent.parent);
+        }
+        return node;
     }
 
     void rotateLeft(Node node) {
@@ -115,7 +135,7 @@ public class RedBlackTree {
             }
             node.right = node.right.left;
             node.parent.left = node;
-        } else {//Need to rotate root
+        } else {
             Node right = parent.right;
             parent.right = right.left;
             right.left.parent = parent;
@@ -169,16 +189,13 @@ public class RedBlackTree {
                 if (temp != null) {
                     if (temp.key == -1) {
                         System.out.print("__");
-                    } 
-                    else {
-                        char symbol = (char)(temp.key);
+                    } else {
+                        char symbol = (char) (temp.key);
                         System.out.print(symbol);
                     }
                     localStack.push(temp.left);
                     localStack.push(temp.right);
-                    if (temp.left != null || temp.right != null) {
-                        isRowEmpty = false;
-                    }
+                    isRowEmpty = isChildNull(temp);
                 } else {
                     System.out.print("__");
                     localStack.push(null);
@@ -189,9 +206,13 @@ public class RedBlackTree {
             }
             System.out.println();
             gaps /= 2;
+
             while (!localStack.isEmpty())
                 globalStack.push(localStack.pop());
         }
         System.out.println(separator);
+    }
+    static boolean isChildNull(Node temp) {
+        return !(temp.left != null || temp.right != null);
     }
 }
