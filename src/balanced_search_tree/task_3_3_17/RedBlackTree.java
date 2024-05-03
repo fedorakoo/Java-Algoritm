@@ -136,7 +136,7 @@ public class RedBlackTree {
             }
             node.right = node.right.left;
             node.parent.left = node;
-        } else {//Need to rotate root
+        } else {
             Node right = parent.right;
             parent.right = right.left;
             right.left.parent = parent;
