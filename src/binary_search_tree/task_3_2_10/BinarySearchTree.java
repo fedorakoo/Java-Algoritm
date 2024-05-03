@@ -15,7 +15,7 @@ class BinarySearchTree {
             this.key = key;
         }
     }
-    
+
     Node insert(Node node, int key) {
         if (node == null) {
             return new Node(key);
@@ -87,16 +87,16 @@ class BinarySearchTree {
         if (node == null) {
             return queue;
         }
-        if(node.key >= leftLimit && node.key <= rightLimit) {
+        if (node.key >= leftLimit && node.key <= rightLimit) {
             queue.add(node.key);
             queue.addAll(keys(node.left, leftLimit, rightLimit));
             queue.addAll(keys(node.right, leftLimit, rightLimit));
-            return queue;
+        } else if (node.key < leftLimit) {
+            queue.addAll(keys(node.right, leftLimit, rightLimit));
+        } else if (node.key > rightLimit) {
+            queue.addAll(keys(node.left, leftLimit, rightLimit));
         }
-        else if(node.key > rightLimit) {
-            keys(node.left, leftLimit, rightLimit);
-        }
-        return keys(node.right, leftLimit, rightLimit);
+        return queue;
     }
     Node max(Node node) {
         if(node == null) {
@@ -133,6 +133,7 @@ class BinarySearchTree {
         }
         return node;
     }
+
     int floor(Node node, int key) {
         if (node == null)
             return -1;

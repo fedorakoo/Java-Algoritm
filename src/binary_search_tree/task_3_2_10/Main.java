@@ -71,7 +71,7 @@ public class Main {
                     break;
                 }
                 case 10: {
-                    outputTreeFlour(tree);
+                    outputCeilingElement(tree);
                     break;
                 }
                 case 11: {
