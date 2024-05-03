@@ -14,11 +14,11 @@ public class Pair {
     public int second() {
         return second;
     }
-    void addNumber(Pair number) {
+    public void addNumber(Pair number) {
         first += number.first;
         second += number.second;
     }
-    int sum() {
+    public int sum() {
         return first + second;
     }
 }
