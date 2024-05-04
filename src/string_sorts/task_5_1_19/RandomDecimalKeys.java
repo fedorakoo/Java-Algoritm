@@ -25,10 +25,10 @@ public class RandomDecimalKeys {
         return result;
     }
     private static char getRandomLetter() {
-        return (char)random.nextInt('A',  'Z');
+        return (char)random.nextInt('A',  'Z' + 1);
     }
     private static char getRandomNumber() {
-        return (char)random.nextInt('0',  '9');
+        return (char)random.nextInt('0',  '9' + 1);
     }
     static Random random = new SecureRandom();
 }
