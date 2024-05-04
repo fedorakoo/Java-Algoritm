@@ -1,7 +1,7 @@
 package balanced_search_tree.task_3_3_17;
 
 import java.security.SecureRandom;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -15,9 +15,11 @@ public class Main {
     static void outputTrees() {
         System.out.print("\n\n");
         Random random = new SecureRandom();
-        Set<Integer> mass = new HashSet<>();
+        Set<Integer> mass = new LinkedHashSet<>();
+        System.out.print("Добавляемые элементы: ");
         while(mass.size() < 8) {
             int randChild = random.nextInt(1,  100);
+            System.out.print(randChild + " ");
             mass.add(randChild);
         }
         BinarySearchTree bst = new BinarySearchTree();

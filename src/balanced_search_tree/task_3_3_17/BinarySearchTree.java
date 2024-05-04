@@ -35,7 +35,7 @@ public class BinarySearchTree {
         return node;
     }
     public static void printTree(Node node) {
-        System.out.println("Бинарное дерево поиска");
+        System.out.println("\nБинарное дерево поиска");
         Deque<Node> globalStack = new LinkedList<>();
         globalStack.push(node);
         int gaps = 32;
