@@ -181,10 +181,14 @@ public class RedBlackTree {
             {
                 Node temp = globalStack.pop();
                 if (temp != null) {
-                    System.out.print(temp.key);
+                    if(temp.key != -1) {
+                        System.out.print(temp.key);
+                    }
+                    else {
+                        System.out.print("__");
+                    }
                     localStack.push(temp.left);
                     localStack.push(temp.right);
-
                     isRowEmpty = false;
                 }
                 else {
