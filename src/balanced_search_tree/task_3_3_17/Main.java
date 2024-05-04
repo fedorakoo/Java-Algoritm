@@ -9,6 +9,11 @@ import java.util.Set;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Сгенерируйте два случайных красно-черных ДБП из 8 узлов. Нарисуйте их (программно или от руки). Сравните их с (несбалансированным) ДБП, построенным из тех же ключей");
+        outputTrees();
+        outputTrees();
+    }
+    static void outputTrees() {
+        System.out.print("\n\n");
         Random random = new SecureRandom();
         Set<Integer> mass = new HashSet<>();
         while(mass.size() < 8) {

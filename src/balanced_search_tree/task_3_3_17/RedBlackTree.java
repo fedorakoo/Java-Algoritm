@@ -7,10 +7,10 @@ public class RedBlackTree {
     private static final boolean RED = false;
     private static final boolean BLACK = true;
     private final Node nil = new Node(-1);
-    private Node parent = nil;
+    private Node root = new Node(-1);
 
     public Node getParent() {
-         return parent;
+         return root;
     }
 
     public class Node {
@@ -24,12 +24,11 @@ public class RedBlackTree {
             this.key = key;
         }
     }
-
     public void insert(int key) {
         Node node = new Node(key);
-        Node temp = parent;
-        if (parent == nil) {
-            parent = node;
+        Node temp = root;
+        if (root == nil) {
+            root = node;
             node.color = BLACK;
             node.parent = nil;
         } else {
@@ -62,7 +61,6 @@ public class RedBlackTree {
             }
         }
     }
-
     public void fixTree(Node node) {
         while (node.parent.color == RED) {
             Node uncle;
@@ -98,7 +96,7 @@ public class RedBlackTree {
             }
             else return;
         }
-        parent.color = BLACK;
+        root.color = BLACK;
     }
 
     boolean firstCheckUncle(Node uncle) {
@@ -137,13 +135,13 @@ public class RedBlackTree {
             node.right = node.right.left;
             node.parent.left = node;
         } else {
-            Node right = parent.right;
-            parent.right = right.left;
-            right.left.parent = parent;
-            parent.parent = right;
-            right.left = parent;
+            Node right = root.right;
+            root.right = right.left;
+            right.left.parent = root;
+            root.parent = right;
+            right.left = root;
             right.parent = nil;
-            parent = right;
+            root = right;
         }
     }
 
@@ -163,16 +161,17 @@ public class RedBlackTree {
             node.left = node.left.right;
             node.parent.right = node;
         } else {
-            Node left = parent.left;
-            parent.left = parent.left.right;
-            left.right.parent = parent;
-            parent.parent = left;
-            left.right = parent;
+            Node left = root.left;
+            root.left = root.left.right;
+            left.right.parent = root;
+            root.parent = left;
+            left.right = root;
             left.parent = nil;
-            parent = left;
+            root = left;
         }
     }
     public static void printTree(Node node) {
+        System.out.println("Красно-черное бинарное дерево поиска");
         Deque<Node> globalStack = new LinkedList<>();
         globalStack.push(node);
         int gaps = 32;
