@@ -10,13 +10,13 @@ public class RedBlackTree {
     private static final boolean RED = false;
     private static final boolean BLACK = true;
     public static final Node nil = new Node(-1);
-    private Node parent = nil;
+    private Node root = nil;
 
     public Node getParent() {
-        return parent;
+        return root;
     }
     public void setParent(Node node) {
-        this.parent = node;
+        this.root = node;
     }
     public static class Node {
         int key;
@@ -34,13 +34,11 @@ public class RedBlackTree {
             this.key = key;
         }
     }
-
-
     public void insert(int key) {
         Node node = new Node(key);
-        Node temp = parent;
-        if (parent == nil) {
-            parent = node;
+        Node temp = root;
+        if (root == nil) {
+            root = node;
             node.color = BLACK;
             node.parent = nil;
         } else {
@@ -73,7 +71,6 @@ public class RedBlackTree {
             }
         }
     }
-
     public void fixTree(Node node) {
         while (node.parent.color == RED) {
             Node uncle;
@@ -91,7 +88,7 @@ public class RedBlackTree {
                     rotateLeft(node);
                 }
                 node = fixRotateRight(boolExpression, node);
-            } else if(node.parent.parent.left != nil) {
+            } else if(node.parent.parent.left != null) {
                 uncle = node.parent.parent.left;
                 boolean boolExpression = true;
                 if (firstCheckUncle(uncle)) {
@@ -109,7 +106,7 @@ public class RedBlackTree {
             }
             else return;
         }
-        parent.color = BLACK;
+        root.color = BLACK;
     }
 
     boolean firstCheckUncle(Node uncle) {
@@ -148,13 +145,13 @@ public class RedBlackTree {
             node.right = node.right.left;
             node.parent.left = node;
         } else {
-            Node right = parent.right;
-            parent.right = right.left;
-            right.left.parent = parent;
-            parent.parent = right;
-            right.left = parent;
+            Node right = root.right;
+            root.right = right.left;
+            right.left.parent = root;
+            root.parent = right;
+            right.left = root;
             right.parent = nil;
-            parent = right;
+            root = right;
         }
     }
 
@@ -174,42 +171,41 @@ public class RedBlackTree {
             node.left = node.left.right;
             node.parent.right = node;
         } else {
-            Node left = parent.left;
-            parent.left = parent.left.right;
-            left.right.parent = parent;
-            parent.parent = left;
-            left.right = parent;
+            Node left = root.left;
+            root.left = root.left.right;
+            left.right.parent = root;
+            root.parent = left;
+            left.right = root;
             left.parent = nil;
-            parent = left;
+            root = left;
         }
     }
     public static void printTree(Node node) {
+        System.out.println("Бинарное дерево поиска");
         Deque<Node> globalStack = new LinkedList<>();
         globalStack.push(node);
         int gaps = 32;
         boolean isRowEmpty = false;
         String separator = "-----------------------------------------------------------------";
         System.out.println(separator);
-        while (!isRowEmpty) {
-            Deque<Node> localStack = new LinkedList<>();
+        while (!isRowEmpty) { Deque<Node> localStack = new LinkedList<>();
             isRowEmpty = true;
             for (int j = 0; j < gaps; j++)
                 System.out.print(' ');
-            while (!globalStack.isEmpty()) {
+            while (!globalStack.isEmpty())
+            {
                 Node temp = globalStack.pop();
-                if (temp != nil) {
-                    if (temp.key == -1) {
-                        System.out.print("__");
-                    } else {
-                        System.out.print(temp.key);
-                    }
+                if (temp != null) {
+                    System.out.print(temp.key);
                     localStack.push(temp.left);
                     localStack.push(temp.right);
-                    isRowEmpty = !(temp.left != nil || temp.right != nil);
-                } else {
+
+                    isRowEmpty = false;
+                }
+                else {
                     System.out.print("__");
-                    localStack.push(nil);
-                    localStack.push(nil);
+                    localStack.push(null);
+                    localStack.push(null);
                 }
                 for (int j = 0; j < gaps * 2 - 2; j++)
                     System.out.print(' ');
