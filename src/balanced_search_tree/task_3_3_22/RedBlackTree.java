@@ -15,12 +15,6 @@ public class RedBlackTree {
         Node left;
         Node right;
         boolean color;
-        boolean isRed() {
-            return (color == RED);
-        }
-        boolean isBlack() {
-            return (color == BLACK);
-        }
 
         Node(int val, boolean color) {
             this.value = val;
@@ -43,8 +37,14 @@ public class RedBlackTree {
     }
 
     public void put(int val) {
-        root = put(root, val);
-        root.color = BLACK;
+        if(selectWithoutComment(root, val) != null) {
+            System.out.println("Элемент уже присутствует.");
+        }
+        else {
+            root = put(root, val);
+            root.color = BLACK;
+            System.out.println("Элемент успешно добавлен.");
+        }
     }
 
     private Node put(Node h, int val) {
@@ -130,6 +130,15 @@ public class RedBlackTree {
     Node select(Node node, int value) {
         if(node == null) {
             System.out.println("Элемент не найден");
+            return null;
+        }
+        if(node.value == value) {
+            return node;
+        }
+        return (node.value > value) ? select(node.left, value) : select(node.right, value);
+    }
+    Node selectWithoutComment(Node node, int value) {
+        if(node == null) {
             return null;
         }
         if(node.value == value) {
