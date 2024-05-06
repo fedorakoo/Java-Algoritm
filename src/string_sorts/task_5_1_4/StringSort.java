@@ -22,19 +22,18 @@ public class StringSort {
                 System.out.print(arr[j] + " ");
             }
             System.out.println();
-            int t;
             if(i > arr.length - 1) {
                 return;
             }
             else {
-                t = charAt(arr[i], d);
-            }
-            if (t < v) {
-                swap(arr, ptr1++, i++);
-            } else if (t > v) {
-                swap(arr, i, ptr2--);
-            } else {
-                i++;
+                int t = charAt(arr[i], d);
+                if (t < v) {
+                    swap(arr, ptr1++, i++);
+                } else if (t > v) {
+                    swap(arr, i, ptr2--);
+                } else {
+                    i++;
+                }
             }
         }
         sort(arr, left, ptr1 - 1, d);
