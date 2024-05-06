@@ -18,11 +18,18 @@ public class StringSort {
         int v = charAt(arr[left], d);
         int i = left + 1;
         while (i <= ptr2) {
-            for (int j = 0; j < arr.length; j++) {
+            for(int j = 0; j < arr.length; j++) {
                 System.out.print(arr[j] + " ");
             }
             System.out.println();
-            int t = (i > arr.length - 1) ? arr.length - 1 : charAt(arr[i], d);
+            String value;
+            if(i > arr.length - 1) {
+                return;
+            }
+            else {
+                value = arr[i];
+            }
+            int t = charAt(value, d);
             if (t < v) {
                 swap(arr, ptr1++, i++);
             } else if (t > v) {
