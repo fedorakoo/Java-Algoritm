@@ -22,7 +22,13 @@ public class StringSort {
                 System.out.print(arr[j] + " ");
             }
             System.out.println();
-            int t = charAt(arr[i], d);
+            int t;
+            if(i > arr.length - 1) {
+                return;
+            }
+            else {
+                t = charAt(arr[i], d);
+            }
             if (t < v) {
                 swap(arr, ptr1++, i++);
             } else if (t > v) {
