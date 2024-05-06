@@ -18,56 +18,57 @@ public class RedBlackTree {
         Node left = nil;
         Node right = nil;
         Node parent = nil;
-
         boolean isRed() {
             return !color;
         }
-
-        boolean isBlack() {
-            return color;
-        }
-
-        Node(int key) {
+        Node(int key){
             this.key = key;
         }
     }
 
 
-    public void insert(int key) {
+     public void insert(int key) {
         Node node = new Node(key);
         Node temp = root;
         if (root == nil) {
             root = node;
             node.color = BLACK;
             node.parent = nil;
+            System.out.println("Элемент успешно добавлен");
         } else {
             updateInsertNode(node, temp);
             fixTree(node);
         }
     }
-
     void updateInsertNode(Node node, Node temp) {
         node.color = RED;
         boolean isDuty = true;
         while (isDuty) {
+            if(node.key == temp.key){
+                System.out.println("Элемент уже присутствует.");
+                return;
+            }
             if (node.key < temp.key) {
                 if (temp.left == nil) {
                     temp.left = node;
                     node.parent = temp;
                     isDuty = false;
-                } else {
+                }
+                else {
                     temp = temp.left;
                 }
-            } else {
+            } else  {
                 if (temp.right == nil) {
                     temp.right = node;
                     node.parent = temp;
                     isDuty = false;
-                } else {
+                }
+                else {
                     temp = temp.right;
                 }
             }
         }
+        System.out.println("Элемент успешно добавлен");
     }
 
     public void fixTree(Node node) {
@@ -87,7 +88,7 @@ public class RedBlackTree {
                     rotateLeft(node);
                 }
                 node = fixRotateRight(boolExpression, node);
-            } else if (node.parent.parent.left != null) {
+            } else if(node.parent.parent.left != null) {
                 uncle = node.parent.parent.left;
                 boolean boolExpression = true;
                 if (firstCheckUncle(uncle)) {
@@ -102,7 +103,8 @@ public class RedBlackTree {
                     rotateRight(node);
                 }
                 node = fixRotateLeft(boolExpression, node);
-            } else return;
+            }
+            else return;
         }
         root.color = BLACK;
     }
@@ -128,7 +130,6 @@ public class RedBlackTree {
         }
         return node;
     }
-
     void rotateLeft(Node node) {
         if (node.parent != nil) {
             if (node == node.parent.left) {
@@ -179,7 +180,6 @@ public class RedBlackTree {
             root = left;
         }
     }
-
     List<Integer> getListElement(Node node) {
         List<Integer> res = new ArrayList<>();
         if (node == null)
@@ -202,34 +202,35 @@ public class RedBlackTree {
 
     double getPercentageRedElementsRedBlackTree(Node node) {
         Pair number = getNumberDifferentColor(node);
-        if (number.sum() == 0) {
+        if(number.sum() == 0) {
             return 0;
-        } else {
-            return ((double) number.first() / (double) number.sum()) * 100;
+        }
+        else {
+            return ((double)number.first() / (double)number.sum()) * 100;
         }
     }
-
     Pair getNumberDifferentColor(Node node) {
-        Pair number = new Pair(0, 0);
-        if (node == nil) {
+        Pair number = new Pair(0,0);
+        if(node == nil) {
             return number;
-        } else {
+        }
+        else {
             number.addNumber(getPairNumberColor(node));
-            if (node.left != nil) {
+            if(node.left != nil) {
                 number.addNumber(getNumberDifferentColor(node.left));
             }
-            if (node.right != nil) {
+            if(node.right != nil) {
                 number.addNumber(getNumberDifferentColor(node.right));
             }
         }
         return number;
     }
-
     Pair getPairNumberColor(Node node) {
-        if (node.isRed()) {
-            return new Pair(1, 0);
-        } else {
-            return new Pair(0, 1);
+        if(node.isRed()) {
+            return new Pair(1,0);
+        }
+        else {
+            return new Pair(0,1);
         }
     }
 }

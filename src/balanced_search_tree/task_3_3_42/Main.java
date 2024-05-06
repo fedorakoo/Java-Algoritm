@@ -38,11 +38,11 @@ public class Main {
                     break;
                 }
                 case 3: {
-                    System.out.println("Значение количества красных элементов дерева: " + Integer.toString(tree.getNumberDifferentColor(tree.getParent()).first()));
+                    System.out.println("Значение количества красных элементов дерева: " + (tree.getNumberDifferentColor(tree.getParent()).first()));
                     break;
                 }
                 case 4: {
-                    System.out.println("Значение количества черных элементов дерева: " + Integer.toString(tree.getNumberDifferentColor(tree.getParent()).second()));
+                    System.out.println("Значение количества черных элементов дерева: " + (tree.getNumberDifferentColor(tree.getParent()).second()));
                     break;
                 }
                 case 5: {
