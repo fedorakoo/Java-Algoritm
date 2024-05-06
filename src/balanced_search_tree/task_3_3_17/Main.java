@@ -26,9 +26,9 @@ public class Main {
         RedBlackTree rbt = new RedBlackTree();
         for (int number : mass) {
             bst.setParent(bst.insert(bst.getParent(), number));
-            rbt.insert(number);
+            rbt.put(number);
         }
         BinarySearchTree.printTree(bst.getParent());
-        RedBlackTree.printTree(rbt.getParent());
+        RedBlackTree.printTree(rbt.getRoot());
     }
 }
