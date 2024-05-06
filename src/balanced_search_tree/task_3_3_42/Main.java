@@ -1,6 +1,7 @@
 package balanced_search_tree.task_3_3_42;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 import static binary_search_tree.input.Input.inputInt;
 import static binary_search_tree.input.Input.inputIntLimit;
@@ -28,7 +29,12 @@ public class Main {
                     break;
                 }
                 case 2: {
-                    RedBlackTree.printTree(tree.getParent());
+                    List<Integer> elements = tree.getListElement(tree.getParent());
+
+                    for(int element : elements) {
+                        System.out.print(element + " ");
+                    }
+                    System.out.println();
                     break;
                 }
                 case 3: {

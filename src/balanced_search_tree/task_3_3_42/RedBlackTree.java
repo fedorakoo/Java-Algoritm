@@ -1,16 +1,15 @@
 package balanced_search_tree.task_3_3_42;
 
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
 
 public class RedBlackTree {
     private static final boolean RED = false;
     private static final boolean BLACK = true;
     private final Node nil = new Node(-1);
-    private Node parent = nil;
+    private Node root = nil;
 
     public Node getParent() {
-        return parent;
+        return root;
     }
 
     public class Node {
@@ -19,23 +18,26 @@ public class RedBlackTree {
         Node left = nil;
         Node right = nil;
         Node parent = nil;
+
         boolean isRed() {
             return !color;
         }
+
         boolean isBlack() {
             return color;
         }
-        Node(int key){
+
+        Node(int key) {
             this.key = key;
         }
     }
 
 
-     public void insert(int key) {
+    public void insert(int key) {
         Node node = new Node(key);
-        Node temp = parent;
-        if (parent == nil) {
-            parent = node;
+        Node temp = root;
+        if (root == nil) {
+            root = node;
             node.color = BLACK;
             node.parent = nil;
         } else {
@@ -43,6 +45,7 @@ public class RedBlackTree {
             fixTree(node);
         }
     }
+
     void updateInsertNode(Node node, Node temp) {
         node.color = RED;
         boolean isDuty = true;
@@ -52,17 +55,15 @@ public class RedBlackTree {
                     temp.left = node;
                     node.parent = temp;
                     isDuty = false;
-                }
-                else {
+                } else {
                     temp = temp.left;
                 }
-            } else  {
+            } else {
                 if (temp.right == nil) {
                     temp.right = node;
                     node.parent = temp;
                     isDuty = false;
-                }
-                else {
+                } else {
                     temp = temp.right;
                 }
             }
@@ -86,7 +87,7 @@ public class RedBlackTree {
                     rotateLeft(node);
                 }
                 node = fixRotateRight(boolExpression, node);
-            } else if(node.parent.parent.left != null) {
+            } else if (node.parent.parent.left != null) {
                 uncle = node.parent.parent.left;
                 boolean boolExpression = true;
                 if (firstCheckUncle(uncle)) {
@@ -101,10 +102,9 @@ public class RedBlackTree {
                     rotateRight(node);
                 }
                 node = fixRotateLeft(boolExpression, node);
-            }
-            else return;
+            } else return;
         }
-        parent.color = BLACK;
+        root.color = BLACK;
     }
 
     boolean firstCheckUncle(Node uncle) {
@@ -128,6 +128,7 @@ public class RedBlackTree {
         }
         return node;
     }
+
     void rotateLeft(Node node) {
         if (node.parent != nil) {
             if (node == node.parent.left) {
@@ -143,13 +144,13 @@ public class RedBlackTree {
             node.right = node.right.left;
             node.parent.left = node;
         } else {
-            Node right = parent.right;
-            parent.right = right.left;
-            right.left.parent = parent;
-            parent.parent = right;
-            right.left = parent;
+            Node right = root.right;
+            root.right = right.left;
+            right.left.parent = root;
+            root.parent = right;
+            right.left = root;
             right.parent = nil;
-            parent = right;
+            root = right;
         }
     }
 
@@ -169,84 +170,66 @@ public class RedBlackTree {
             node.left = node.left.right;
             node.parent.right = node;
         } else {
-            Node left = parent.left;
-            parent.left = parent.left.right;
-            left.right.parent = parent;
-            parent.parent = left;
-            left.right = parent;
+            Node left = root.left;
+            root.left = root.left.right;
+            left.right.parent = root;
+            root.parent = left;
+            left.right = root;
             left.parent = nil;
-            parent = left;
+            root = left;
         }
     }
-    public static void printTree(Node node) {
-        Deque<Node> globalStack = new LinkedList<>();
-        globalStack.push(node);
-        int gaps = 32;
-        boolean isRowEmpty = false;
-        String separator = "-----------------------------------------------------------------";
-        System.out.println(separator);
-        while (!isRowEmpty) {
-            Deque<Node> localStack = new LinkedList<>();
-            isRowEmpty = true;
-            for (int j = 0; j < gaps; j++)
-                System.out.print(' ');
-            while (!globalStack.isEmpty()) {
-                Node temp = globalStack.pop();
-                if (temp != null) {
-                    if (temp.key == -1) {
-                        System.out.print("__");
-                    } else {
-                        System.out.print(temp.key);
-                    }
-                    localStack.push(temp.left);
-                    localStack.push(temp.right);
-                    isRowEmpty = !(temp.left != null || temp.right != null);
-                } else {
-                    System.out.print("__");
-                    localStack.push(null);
-                    localStack.push(null);
-                }
-                for (int j = 0; j < gaps * 2 - 2; j++)
-                    System.out.print(' ');
+
+    List<Integer> getListElement(Node node) {
+        List<Integer> res = new ArrayList<>();
+        if (node == null)
+            return res;
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node tempNode = queue.poll();
+            res.add(tempNode.key);
+            if (tempNode.left != null && tempNode.left.key != -1) {
+                queue.add(tempNode.left);
             }
-            System.out.println();
-            gaps /= 2;
-            while (!localStack.isEmpty())
-                globalStack.push(localStack.pop());
+            if (tempNode.right != null && tempNode.right.key != -1) {
+                queue.add(tempNode.right);
+            }
         }
-        System.out.println(separator);
+        return res;
     }
+
     double getPercentageRedElementsRedBlackTree(Node node) {
         Pair number = getNumberDifferentColor(node);
-        if(number.sum() == 0) {
+        if (number.sum() == 0) {
             return 0;
-        }
-        else {
-            return ((double)number.first() / (double)number.sum()) * 100;
+        } else {
+            return ((double) number.first() / (double) number.sum()) * 100;
         }
     }
+
     Pair getNumberDifferentColor(Node node) {
-        Pair number = new Pair(0,0);
-        if(node == nil) {
+        Pair number = new Pair(0, 0);
+        if (node == nil) {
             return number;
-        }
-        else {
+        } else {
             number.addNumber(getPairNumberColor(node));
-            if(node.left != nil) {
+            if (node.left != nil) {
                 number.addNumber(getNumberDifferentColor(node.left));
             }
-            if(node.right != nil) {
+            if (node.right != nil) {
                 number.addNumber(getNumberDifferentColor(node.right));
             }
         }
         return number;
     }
+
     Pair getPairNumberColor(Node node) {
-        if(node.isRed()) {
-            return new Pair(1,0);
-        }
-        else {
-            return new Pair(0,1);
+        if (node.isRed()) {
+            return new Pair(1, 0);
+        } else {
+            return new Pair(0, 1);
         }
     }
 }
