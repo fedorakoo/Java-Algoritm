@@ -6,20 +6,27 @@ import java.util.LinkedList;
 public class RedBlackTree {
     private static final boolean RED = false;
     private static final boolean BLACK = true;
-    private final Node nil = new Node(-1);
-    private Node root = new Node(-1);
+    public static final Node nil = new Node(-1);
+    private Node root = nil;
 
     public Node getParent() {
-         return root;
+        return root;
     }
-
-    public class Node {
+    public void setParent(Node node) {
+        this.root = node;
+    }
+    public static class Node {
         int key;
         boolean color = BLACK;
         Node left = nil;
         Node right = nil;
         Node parent = nil;
-
+        boolean isRed() {
+            return !color;
+        }
+        boolean isBlack() {
+            return color;
+        }
         Node(int key){
             this.key = key;
         }
@@ -121,54 +128,39 @@ public class RedBlackTree {
         return node;
     }
     void rotateLeft(Node node) {
-        if (node.parent != nil) {
-            if (node == node.parent.left) {
-                node.parent.left = node.right;
-            } else {
-                node.parent.right = node.right;
-            }
-            node.right.parent = node.parent;
-            node.parent = node.right;
-            if (node.right.left != nil) {
-                node.right.left.parent = node;
-            }
-            node.right = node.right.left;
-            node.parent.left = node;
-        } else {
-            Node right = root.right;
-            root.right = right.left;
-            right.left.parent = root;
-            root.parent = right;
-            right.left = root;
-            right.parent = nil;
-            root = right;
+        Node rightChild = node.right;
+        node.right = rightChild.left;
+        if (rightChild.left != nil) {
+            rightChild.left.parent = node;
         }
+        rightChild.parent = node.parent;
+        if (node.parent == nil) {
+            root = rightChild;
+        } else if (node == node.parent.left) {
+            node.parent.left = rightChild;
+        } else {
+            node.parent.right = rightChild;
+        }
+        rightChild.left = node;
+        node.parent = rightChild;
     }
 
     void rotateRight(Node node) {
-        if (node.parent != nil) {
-            if (node == node.parent.left) {
-                node.parent.left = node.left;
-            } else {
-                node.parent.right = node.left;
-            }
-
-            node.left.parent = node.parent;
-            node.parent = node.left;
-            if (node.left.right != nil) {
-                node.left.right.parent = node;
-            }
-            node.left = node.left.right;
-            node.parent.right = node;
-        } else {
-            Node left = root.left;
-            root.left = root.left.right;
-            left.right.parent = root;
-            root.parent = left;
-            left.right = root;
-            left.parent = nil;
-            root = left;
+        Node leftChild = node.left;
+        node.left = leftChild.right;
+        if (leftChild.right != nil) {
+            leftChild.right.parent = node;
         }
+        leftChild.parent = node.parent;
+        if (node.parent == nil) {
+            root = leftChild;
+        } else if (node == node.parent.right) {
+            node.parent.right = leftChild;
+        } else {
+            node.parent.left = leftChild;
+        }
+        leftChild.right = node;
+        node.parent = leftChild;
     }
     public static void printTree(Node node) {
         System.out.println("Красно-черное бинарное дерево поиска");
