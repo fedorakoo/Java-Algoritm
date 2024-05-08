@@ -23,7 +23,7 @@ public class StringSort {
             }
             System.out.println();
             String value;
-            if(i > arr.length - 1) {
+            if(i >= arr.length) {
                 return;
             }
             else {
