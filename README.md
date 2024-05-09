@@ -2,6 +2,7 @@
 ### **Анализатор кода: [SonarCloud](https://sonarcloud.io/project/overview?id=fedorakoo_Java-Algoritm)</span>**
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=fedorakoo_Java-Algoritm&metric=bugs)](https://sonarcloud.io/summary/new_code?id=fedorakoo_Java-Algoritm)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=fedorakoo_Java-Algoritm&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=fedorakoo_Java-Algoritm)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=fedorakoo_Java-Algoritm&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=fedorakoo_Java-Algoritm)
 ---
 ### **Учебник: [Алгоритмы на Java (4-е издание)](https://drive.google.com/file/d/1G-ffq93rK3_wpvbKyWC5lWK9xWPDjrlE/view)**
 ---------
@@ -20,3 +21,7 @@
 | | [Упражнение 3.2.10](https://github.com/fedorakoo/Java-Algoritm/tree/binary_search_tree/src/binary_search_tree/task_3_2_10) | 2.5 ч.| 3.6 ч.
 | | [Упражнение 3.2.21](https://github.com/fedorakoo/Java-Algoritm/tree/binary_search_tree/src/binary_search_tree/task_3_2_21) | 1.5 ч.| 1.75 ч.
 | | [Упражнение 3.2.29](https://github.com/fedorakoo/Java-Algoritm/tree/binary_search_tree/src/binary_search_tree/task_3_2_29) | 1.5 ч.| 1.75 ч.
+**Сбалансированные деревья поиска** | [Упражнение 3.3.11](https://github.com/fedorakoo/Java-Algoritm/tree/balanced_search_tree/src/balanced_search_tree/task_3_3_11) | 1.5 ч.| 1.4 ч.
+| | [Упражнение 3.3.17](https://github.com/fedorakoo/Java-Algoritm/tree/balanced_search_tree/src/balanced_search_tree/task_3_3_17) | 1.5 ч.| 1.6 ч.
+| | [Упражнение 3.3.22](https://github.com/fedorakoo/Java-Algoritm/tree/balanced_search_tree/src/balanced_search_tree/task_3_3_22) | 2.0 ч.| 2.2 ч.
+| | [Упражнение 3.3.42](https://github.com/fedorakoo/Java-Algoritm/tree/balanced_search_tree/src/balanced_search_tree/task_3_3_42) | 2.0 ч.| 1.4 ч.
