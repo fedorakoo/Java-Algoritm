@@ -23,11 +23,10 @@ public class StringSort {
             }
             System.out.println();
             String value;
-            if(i >= arr.length) {
-                return;
-            }
-            else {
+            if (i < arr.length) {
                 value = arr[i];
+            } else {
+                return;
             }
             int t = charAt(value, d);
             if (t < v) {
