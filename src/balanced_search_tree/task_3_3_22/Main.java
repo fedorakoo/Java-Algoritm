@@ -30,15 +30,15 @@ public class Main {
                 case 1: {
                     System.out.print("Введите значение добавляемого элемента: ");
                     int value = inputInt();
-                    tree.insert(value);
+                    tree.put(value);
                     break;
                 }
                 case 2: {
-                    System.out.print("Значение высоты дерева: " + tree.height(tree.getParent()) + "\n");
+                    System.out.print("Значение высоты дерева: " + tree.height(tree.getRoot()) + "\n");
                     break;
                 }
                 case 3: {
-                    System.out.print("Значение количества элементов дерева: " + tree.size(tree.getParent()) + "\n");
+                    System.out.print("Значение количества элементов дерева: " + tree.size(tree.getRoot()) + "\n");
                     break;
                 }
                 case 4: {
@@ -60,22 +60,22 @@ public class Main {
                 case 8: {
                     outputInputInformation();
                     int value = inputInt();
-                    RedBlackTree.Node select = tree.select(tree.getParent(), value);
-                    System.out.print((select == RedBlackTree.nil ? "Данный элемент не найден" : "Данный элемент найден"));
+                    RedBlackTree.Node select = tree.select(tree.getRoot(), value);
+                    System.out.print((select == null ? "Данный элемент не найден" : "Данный элемент найден"));
                     break;
                 }
                 case 9: {
                     outputInputInformation();
                     int value = inputInt();
-                    System.out.print("Значение ранга равно " + tree.rank(tree.getParent(), value));
+                    System.out.print("Значение ранга равно " + tree.rank(tree.getRoot(), value));
                     break;
                 }
                 case 10: {
-                    outputKeysTree(tree);
+                    outputvaluesTree(tree);
                     break;
                 }
                 case 11: {
-                    RedBlackTree.printTree(tree.getParent());
+                    RedBlackTree.printTree(tree.getRoot());
                     break;
                 }
                 default: {
@@ -90,47 +90,47 @@ public class Main {
         System.out.print("Введите значение: ");
     }
     static void outputMinElement(RedBlackTree tree) {
-        if(tree.min(tree.getParent()) == RedBlackTree.nil) {
+        if(tree.min(tree.getRoot()) == null) {
             System.out.print("Минимального элемента нет\n");
         }
         else {
-            System.out.print("Значение минимального элемента дерева: " + tree.min(tree.getParent()).key + "\n");
+            System.out.print("Значение минимального элемента дерева: " + tree.min(tree.getRoot()).value + "\n");
         }
     }
     static void outputMaxElement(RedBlackTree tree) {
-        if(tree.min(tree.getParent()) == RedBlackTree.nil) {
+        if(tree.min(tree.getRoot()) == null) {
             System.out.print("Максимального элемента нет\n");
         }
         else {
-            System.out.print("Значение максимального элемента дерева: " + tree.max(tree.getParent()).key + "\n");
+            System.out.print("Значение максимального элемента дерева: " + tree.max(tree.getRoot()).value + "\n");
         }
     }
     static void outputTreeFlour(RedBlackTree tree) {
         outputInputInformation();
         int value = inputInt();
-        if(tree.floor(tree.getParent(), value) == -1) {
+        if(tree.floor(tree.getRoot(), value) == -1) {
             System.out.print("Элемента нет\n");
         }
         else {
-            System.out.print("Значение 'пола' элемента дерева: " + tree.floor(tree.getParent(), value) + "\n");
+            System.out.print("Значение 'пола' элемента дерева: " + tree.floor(tree.getRoot(), value) + "\n");
         }
     }
     static void outputCeilingElement(RedBlackTree tree) {
         outputInputInformation();
         int value = inputInt();
-        if(tree.ceiling(tree.getParent(), value) == -1) {
+        if(tree.ceiling(tree.getRoot(), value) == -1) {
             System.out.print("Элемента нет\n");
         }
         else {
-            System.out.print("Значение 'потолка' элемента дерева: " + tree.ceiling(tree.getParent(), value) + "\n");
+            System.out.print("Значение 'потолка' элемента дерева: " + tree.ceiling(tree.getRoot(), value) + "\n");
         }
     }
-    static void outputKeysTree(RedBlackTree tree) {
+    static void outputvaluesTree(RedBlackTree tree) {
         System.out.print("Введите значение левого ограничения: ");
         int valueLeft = inputInt();
         System.out.print("Введите значение правого ограничения: ");
         int valueRight = inputInt();
-        List<Integer> result = tree.keys(tree.getParent(), valueLeft, valueRight);
+        List<Integer> result = tree.values(tree.getRoot(), valueLeft, valueRight);
         Collections.sort(result);
         if (result.isEmpty()) {
             System.out.print("Элементов в заданном диапазоне нет");

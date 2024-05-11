@@ -67,33 +67,33 @@ public class RedBlackTree {
             Node uncle;
             if (node.parent == node.parent.parent.left) {
                 uncle = node.parent.parent.right;
-                boolean boolExpression = true;
+                boolean boolChangesNeed = true;
                 if (firstCheckUncle(uncle)) {
                     node.parent.color = BLACK;
                     uncle.color = BLACK;
                     node.parent.parent.color = RED;
                     node = node.parent.parent;
-                    boolExpression = false;
+                    boolChangesNeed = false;
                 } else if (node == node.parent.right) {
                     node = node.parent;
                     rotateLeft(node);
                 }
-                node = fixRotateRight(boolExpression, node);
+                node = fixRotateRight(boolChangesNeed, node);
             } else {
                 uncle = node.parent.parent.left;
-                boolean boolExpression = true;
+                boolean boolChangesNeed = true;
                 if (firstCheckUncle(uncle)) {
                     node.parent.color = BLACK;
                     uncle.color = BLACK;
                     node.parent.parent.color = RED;
                     node = node.parent.parent;
-                    boolExpression = false;
+                    boolChangesNeed = false;
                 }
                 if (node == node.parent.left) {
                     node = node.parent;
                     rotateRight(node);
                 }
-                node = fixRotateLeft(boolExpression, node);
+                node = fixRotateLeft(boolChangesNeed, node);
             }
         }
         parent.color = BLACK;
@@ -103,8 +103,8 @@ public class RedBlackTree {
         return uncle != nil && uncle.color == RED;
     }
 
-    Node fixRotateLeft(boolean boolExpression, Node node) {
-        if (boolExpression) {
+    Node fixRotateLeft(boolean boolChangesNeed, Node node) {
+        if (boolChangesNeed) {
             node.parent.color = BLACK;
             node.parent.parent.color = RED;
             rotateLeft(node.parent.parent);
@@ -112,8 +112,8 @@ public class RedBlackTree {
         return node;
     }
 
-    Node fixRotateRight(boolean boolExpression, Node node) {
-        if (boolExpression) {
+    Node fixRotateRight(boolean boolChangesNeed, Node node) {
+        if (boolChangesNeed) {
             node.parent.color = BLACK;
             node.parent.parent.color = RED;
             rotateRight(node.parent.parent);
