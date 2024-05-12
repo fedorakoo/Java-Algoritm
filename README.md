@@ -28,7 +28,7 @@
 **Хеш-таблицы** | [Упражнение 3.4.9](https://github.com/fedorakoo/Java-Algoritm/tree/hash_table/src/hash_table/task_3_4_9) | 1.5 ч.| 1.0 ч.
 | | [Упражнение 3.4.10](https://github.com/fedorakoo/Java-Algoritm/tree/hash_table/src/hash_table/task_3_4_10) | 1.0 ч.| 0.8 ч.
 | | [Упражнение 3.4.17](https://github.com/fedorakoo/Java-Algoritm/tree/hash_table/src/hash_table/task_3_4_17) | 1.25 ч.| 1.2 ч.
-| | [Упражнение 5.1.20](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_20) | 1.25 ч.| 1.0 ч.
+| | [Упражнение 3.4.39](https://github.com/fedorakoo/Java-Algoritm/tree/hash_table/src/hash_table/task_3_4_39) | 1.25 ч.| 1.0 ч.
 **Сортировки строк** | [Упражнение 5.1.4](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_4) | 1.0 ч.| 0.6 ч.
 | | [Упражнение 5.1.14](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_14) | 1.0 ч.| 0.8 ч.
 | | [Упражнение 5.1.19](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_19) | 1.25 ч.| 1.0 ч.
