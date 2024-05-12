@@ -41,8 +41,7 @@ public class SeparateChainingHashST<Key, Value> {
         int i = hash(key);
         for (Node x = arr[i]; x != null; x = x.next) {
             if (key.equals(x.key)) {
-                System.out.println("Элемент с таким ключем уже существует");
-                x.value = value;
+                System.out.println("Элемент с таким ключом уже существует");
                 return;
             }
         }
@@ -56,17 +55,21 @@ public class SeparateChainingHashST<Key, Value> {
     }
 
     private Node delete(Node x, Key key) {
-        if (x == null) return null;
+        if (x == null) {
+            System.out.println("Элемента с данным ключом не существует");
+            return null;
+        }
         if (key.equals(x.key)) {
             System.out.println("Элемент успешно удален");
             return x.next;
         }
         x.next = delete(x.next, key);
-        System.out.println("Данного элемента не существует");
+        System.out.println("Элемента с данным ключом не существует");
         return x;
     }
 
     void output() {
+        int number = 0;
         for(int i = 0; i < size; i++) {
             if(arr[i] != null) {
                 System.out.print("[" + i + "]: ");
@@ -74,7 +77,11 @@ public class SeparateChainingHashST<Key, Value> {
                     System.out.print(x.value + " ");
                 }
                 System.out.println();
+                number++;
             }
+        }
+        if(number == 0) {
+            System.out.println("Хеш-таблица пуста");
         }
     }
 }
