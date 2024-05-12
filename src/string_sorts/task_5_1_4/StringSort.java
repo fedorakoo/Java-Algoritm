@@ -20,11 +20,28 @@ public class StringSort {
         int v = charAt(arr.get(left), d);
         int i = left + 1;
         while (i <= ptr2) {
-            int t = charAt(arr.get(i), d);
+            for(int j = 0; j < arr.size(); j++) {
+                System.out.print(arr.get(j) + " ");
+            }
+            System.out.println();
+            String value;
+            if (i < arr.size()) {
+                value = arr.get(i);
+            } else {
+                return;
+            }
+            int t = charAt(value, d);
             if (t < v) {
-                swap(arr, ptr1++, i++);
+                String temp = arr.get(ptr1);
+                arr.set(ptr1, arr.get(i));
+                arr.set(i, temp);
+                ptr1++;
+                i++;
             } else if (t > v) {
-                swap(arr, i, ptr2--);
+                String temp = arr.get(ptr2);
+                arr.set(ptr2, arr.get(i));
+                arr.set(i, temp);
+                ptr2--;
             } else {
                 i++;
             }
@@ -32,10 +49,5 @@ public class StringSort {
         sort(arr, left, ptr1 - 1, d);
         if (v >= 0) sort(arr, ptr1, ptr2, d + 1);
         sort(arr, ptr2 + 1, right, d);
-    }
-    private static void swap(List<String> arr, int ptr1, int ptr2) {
-        String temp = arr.get(ptr1);
-        arr.set(ptr1, arr.get(ptr2));
-        arr.set(ptr2, temp);
     }
 }

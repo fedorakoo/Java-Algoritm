@@ -8,8 +8,7 @@ public class Sort {
     }
     private static final  int R = 256;
     private static final int L = 15;
-    private static String[] helpArr;                // Вспомогательный массив для распределения
-
+    private static String[] helpArr;
     private static int charAt(String s, int d) {
         if (d < s.length()) {
             return s.charAt(d);
