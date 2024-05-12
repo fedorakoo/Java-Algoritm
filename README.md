@@ -25,3 +25,7 @@
 | | [Упражнение 3.3.17](https://github.com/fedorakoo/Java-Algoritm/tree/balanced_search_tree/src/balanced_search_tree/task_3_3_17) | 1.5 ч.| 1.6 ч.
 | | [Упражнение 3.3.22](https://github.com/fedorakoo/Java-Algoritm/tree/balanced_search_tree/src/balanced_search_tree/task_3_3_22) | 2.0 ч.| 2.2 ч.
 | | [Упражнение 3.3.42](https://github.com/fedorakoo/Java-Algoritm/tree/balanced_search_tree/src/balanced_search_tree/task_3_3_42) | 2.0 ч.| 1.4 ч.
+**Сортировки строк** | [Упражнение 5.1.4](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_4) | 1.0 ч.| 0.6 ч.
+| | [Упражнение 5.1.14](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_14) | 1.0 ч.| 0.8 ч.
+| | [Упражнение 5.1.19](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_19) | 1.25 ч.| 1.0 ч.
+| | [Упражнение 5.1.20](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_20) | 1.25 ч.| 1.0 ч.
