@@ -1,6 +1,6 @@
 package hash_table.task_3_4_9;
 
-public class SeparateChainingHashST<Key, Value> {
+public class SeparateChainingHashST<T1, T2> {
     private int size;
     private Node[] arr;
 
@@ -25,19 +25,19 @@ public class SeparateChainingHashST<Key, Value> {
         arr = new Node[size];
     }
 
-    private int hash(Key key) {
+    private int hash(T1 key) {
         return (key.hashCode() & 0x7fffffff) % size;
     }
 
-    public Value get(Key key) {
+    public T2 get(T1 key) {
         int i = hash(key);
         for (Node x = arr[i]; x != null; x = x.next) {
-            if (key.equals(x.key)) return (Value) x.value;
+            if (key.equals(x.key)) return (T2) x.value;
         }
         return null;
     }
 
-    public void put(Key key, Value value) {
+    public void put(T1 key, T2 value) {
         int i = hash(key);
         for (Node x = arr[i]; x != null; x = x.next) {
             if (key.equals(x.key)) {
@@ -49,12 +49,12 @@ public class SeparateChainingHashST<Key, Value> {
         System.out.println("Элемент успешно добавлен");
     }
 
-    public void delete(Key key) {
+    public void delete(T1 key) {
         int i = hash(key);
         arr[i] = delete(arr[i], key);
     }
 
-    private Node delete(Node x, Key key) {
+    private Node delete(Node x, T1 key) {
         if (x == null) {
             System.out.println("Элемента с данным ключом не существует");
             return null;

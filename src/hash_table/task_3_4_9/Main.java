@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Условие задания: Реализуйте энергичный метод delete() для класса SeparateChainingHashST.");
-        SeparateChainingHashST table = new SeparateChainingHashST<>();
+        SeparateChainingHashST<String, Integer> table = new SeparateChainingHashST<>();
         int next;
         do {
             System.out.print("\n1. Добавить элемент\n" +
