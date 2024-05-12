@@ -14,11 +14,11 @@ public class FileProcessing {
             String line;
             StringBuilder sb = new StringBuilder();
             while ((line = bufferedReader.readLine()) != null) {
-                sb.append(line).append("\n");
+                sb.append(line + "\n");
             }
             text = sb.toString();
         } catch (IOException e) {
-            text = "Error";
+            text = "";
         }
         return text;
     }
