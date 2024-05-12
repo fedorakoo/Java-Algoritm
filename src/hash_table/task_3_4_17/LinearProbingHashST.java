@@ -1,64 +1,63 @@
 package hash_table.task_3_4_17;
 
-public class LinearProbingHashST<Key, Value>
+public class LinearProbingHashST<T1, T2>
 {
     private int size;
     private int capasity = 16;
-    private Key[] keys;
-    private Value[] vals;
+    private T1[] keys;
+    private T2[] values;
 
     public LinearProbingHashST()
     {
-        keys = (Key[]) new Object[capasity];
-        vals = (Value[]) new Object[capasity];
+        keys = (T1[]) new Object[capasity];
+        values = (T2[]) new Object[capasity];
     }
     public LinearProbingHashST(int capasity)
     {
         this.size = capasity;
-        keys = (Key[]) new Object[this.capasity];
-        vals = (Value[]) new Object[this.capasity];
+        keys = (T1[]) new Object[this.capasity];
+        values = (T2[]) new Object[this.capasity];
     }
 
-    private int hash(Key key)
+    private int hash(T1 key)
     {
         return (key.hashCode() & 0x7fffffff) % capasity;
     }
 
     public void resize(int capacity) {
-        LinearProbingHashST<Key, Value> t = new LinearProbingHashST<>(capacity);
+        LinearProbingHashST<T1, T2> t = new LinearProbingHashST<>(capacity);
         for (int i = 0; i < capasity; i++)
             if (keys[i] != null)
-                t.put(keys[i], vals[i]);
+                t.put(keys[i], values[i]);
         keys = t.keys;
-        vals = t.vals;
+        values = t.values;
         capasity = t.capasity;
     }
 
-    public void put(Key key, Value val)
+    public void put(T1 key, T2 val)
     {
         if (size >= capasity /2) resize(2* capasity);
         int i;
         for (i = hash(key); keys[i] != null; i = (i + 1) % capasity)
             if (keys[i].equals(key)) {
                 System.out.println("Элемент с таким ключем уже существует");
-                vals[i] = val;
                 return;
             }
         keys[i] = key;
-        vals[i] = val;
+        values[i] = val;
         size++;
         System.out.println("Элемент успешно добавлен");
     }
 
-    public Value get(Key key)
+    public T2 get(T1 key)
     {
         for(int i = hash(key); keys[i] != null; i= (i + 1) % capasity)
             if(keys[i].equals(key))
-                return vals[i];
+                return values[i];
         return null;
     }
 
-    public void delete(Key key)
+    public void delete(T1 key)
     {
         if(get(key) == null)  {
             System.out.println("Данного элемента не существует");
@@ -68,13 +67,13 @@ public class LinearProbingHashST<Key, Value>
             while (!key.equals(keys[i]))
                 i = (i + 1) % capasity;
             keys[i] = null;
-            vals[i] = null;
+            values[i] = null;
             i = (i + 1) % capasity;
             while (keys[i] != null) {
-                Key keyToRedo = keys[i];
-                Value valToRedo = vals[i];
+                T1 keyToRedo = keys[i];
+                T2 valToRedo = values[i];
                 keys[i] = null;
-                vals[i] = null;
+                values[i] = null;
                 size--;
                 put(keyToRedo, valToRedo);
                 i = (i + 1) % capasity;
@@ -87,10 +86,15 @@ public class LinearProbingHashST<Key, Value>
         }
     }
     public void output() {
+        int number = 0;
         for (int i = 0; i < capasity; i++) {
             if (keys[i] != null) {
-                System.out.println("Number [" + i + "] Key: " + keys[i].toString() + ", Value: " + vals[i].toString());
+                number++;
+                System.out.println("Number [" + i + "] Key: " + keys[i].toString() + ", Value: " + values[i].toString());
             }
+        }
+        if(number == 0) {
+            System.out.println("Хеш-таблица пуста");
         }
     }
 

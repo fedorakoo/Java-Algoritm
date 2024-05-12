@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Условие задания: Приведите результат использования метода delete() для удаления ключа из таблицы типа LinearProbingHashST со стандартным клиентом индексации.");
-        LinearProbingHashST table = new LinearProbingHashST<>();
+        LinearProbingHashST<String, Integer> table = new LinearProbingHashST<>();
         int next;
         do {
             System.out.print("\n1. Добавить элемент\n" +
