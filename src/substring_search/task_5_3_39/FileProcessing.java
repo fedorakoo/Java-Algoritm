@@ -18,7 +18,7 @@ public class FileProcessing {
             }
             text = sb.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            text = "Error";
         }
         return text;
     }
