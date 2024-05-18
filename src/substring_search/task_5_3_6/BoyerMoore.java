@@ -13,9 +13,15 @@ public class BoyerMoore {
         for (int j = 0; j < m; j++) {
             right[pat.charAt(j)] = j;
         }
+
         System.out.print("Содержимое массива right: ");
         for(int i = 0; i < right.length; i++) {
-            System.out.print(right[i] + " ");
+            if(right[i] != -1) {
+                System.out.print((char) 27 + "[31m" + Integer.toString(right[i]) + (char)27 + "[0m" + " ");
+            }
+            else {
+                System.out.print(right[i] + " ");
+            }
         }
     }
 }
