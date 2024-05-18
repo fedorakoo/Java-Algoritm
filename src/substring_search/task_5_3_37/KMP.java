@@ -17,10 +17,12 @@ public class KMP {
                 j++;
                 i++;
             }
+            number += 2;
             if (j == m) {
                 j = arr[j - 1];
             }
             else if (i < n && substr.charAt(j) != text.charAt(i)) {
+                number += 2;
                 if (j != 0) {
                     j = arr[j - 1];
                 }
@@ -28,7 +30,6 @@ public class KMP {
                     i = i + 1;
                 }
             }
-            number++;
         }
         return number;
     }
@@ -38,12 +39,14 @@ public class KMP {
         int i = 1;
         arr[0] = 0;
         while (i < m) {
+            number++;
             if (substr.charAt(i) == substr.charAt(len)) {
                 len++;
                 arr[i] = len;
                 i++;
-            } else
-            {
+            }
+            else {
+                number++;
                 if (len != 0) {
                     len = arr[len - 1];
                 }
@@ -52,7 +55,6 @@ public class KMP {
                     i++;
                 }
             }
-            number++;
         }
         return number;
     }
