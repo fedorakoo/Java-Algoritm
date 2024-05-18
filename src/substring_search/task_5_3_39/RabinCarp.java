@@ -26,12 +26,15 @@ public class RabinCarp {
             int diff = text.length() - substr.length();
             for (i = 0; i <= diff; i++) {
                 if (t[i] == number) {
+                    boolean found = true;
                     for (int k = 0; k < substr.length(); k++) {
                         if (text.charAt(i + k) != substr.charAt(k)) {
+                            found = false;
                             break;
-                        } else {
-                            return;
                         }
+                    }
+                    if(found) {
+                        return;
                     }
                 }
                 if (i < diff) {
