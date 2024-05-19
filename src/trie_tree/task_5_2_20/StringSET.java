@@ -74,7 +74,6 @@ public class StringSET {
     public int size() {
         return countWords(root);
     }
-
     private int countWords(StringSET.TrieNode node) {
         int result = 0;
         if (node.isKey) {
