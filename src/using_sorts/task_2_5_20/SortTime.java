@@ -33,26 +33,32 @@ public class SortTime {
         }
 
         int firstResult = 0;
+        int endSecond = minuteEndList.get(0);
         for (int i = 0; i < minuteStartList.size() - 1; ++i) {
-            int value = minuteStartList.get(i + 1) - minuteEndList.get(i);
+            endSecond = Math.max(minuteEndList.get(i), endSecond);
+            int value = minuteStartList.get(i + 1) - endSecond;
             if (value > firstResult) {
-                firstResult = value;
+                firstResult = Math.max(value, firstResult);
             }
         }
+        
         int secondResult = 0;
         int value = 0;
-        for (int i = 0; i < minuteEndList.size(); ++i) {
-            if (i + 1 < minuteStartList.size()) {
-                value += Math.min(minuteEndList.get(i), minuteStartList.get(i + 1)) - minuteStartList.get(i);
-            } else {
-                value += minuteEndList.get(i) - minuteStartList.get(i);
-            }
-            if (i + 1 < minuteStartList.size() && minuteEndList.get(i) < minuteStartList.get(i + 1)) {
-                secondResult = Math.max(value, secondResult);
-                value = 0;
-            }
+        int startResult = 0;
+        int finalResult = 0;
+        for (int i = 0; i < minuteEndList.size(); i++) {
+           if(value == 0) {
+               startResult = minuteStartList.get(i);
+               finalResult = minuteEndList.get(i);
+           }
+           else if(value != 0 && i + 1 < minuteEndList.size() && minuteEndList.get(i) >= minuteStartList.get(i + 1)) {
+               finalResult = Math.max(minuteEndList.get(i), finalResult);
+           }
+           else {
+               secondResult = Math.max(finalResult - startResult, secondResult);
+           }
+            secondResult = Math.max(finalResult - startResult, secondResult);
         }
-        secondResult = Math.max(value, secondResult);
         return "\nСамый продолжительный интервал простоя процессора длился: " + toString(firstResult) + "\n" +
                 "Самый продолжительный интервал работы процессора длился: " + toString(secondResult) + "\n ";
     }
