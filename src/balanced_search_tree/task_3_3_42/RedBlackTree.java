@@ -1,221 +1,103 @@
 package balanced_search_tree.task_3_3_42;
 
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
 
 public class RedBlackTree {
-    private static final boolean RED = false;
-    private static final boolean BLACK = true;
-    private final Node nil = new Node(-1);
-    private Node parent = nil;
+    private Node root;
 
-    public Node getParent() {
-        return parent;
-    }
+    private static final boolean RED = true;
+    private static final boolean BLACK = false;
 
-    public class Node {
-        int key;
-        boolean color = BLACK;
-        Node left = nil;
-        Node right = nil;
-        Node parent = nil;
-        boolean isRed() {
-            return !color;
-        }
-        boolean isBlack() {
-            return color;
-        }
-        Node(int key){
-            this.key = key;
+    private class Node {
+        int value;
+        Node left;
+        Node right;
+        boolean color;
+
+        Node(int val, boolean color) {
+            this.value = val;
+            this.color = color;
         }
     }
+    public Node getRoot() {
+        return root;
+    }
+    private boolean isRed(Node x) {
+        if (x == null)
+            return false;
+        return x.color == RED;
+    }
 
+    private void flipColors(Node h) {
+        h.color = RED;
+        h.left.color = BLACK;
+        h.right.color = BLACK;
+    }
 
-     public void insert(int key) {
-        Node node = new Node(key);
-        Node temp = parent;
-        if (parent == nil) {
-            parent = node;
-            node.color = BLACK;
-            node.parent = nil;
+    public void put(int val) {
+        root = put(root, val);
+        root.color = BLACK;
+    }
+
+    private Node put(Node h, int val) {
+        if (h == null) {
+            return new Node(val, RED);
+        }
+        int cmp = val;
+        if (cmp < 0) {
+            h.left = put(h.left, val);
+        } else if (cmp > 0) {
+            h.right = put(h.right, val);
         } else {
-            updateInsertNode(node, temp);
-            fixTree(node);
+            h.value = val;
         }
+        if (isRed(h.right) && !isRed(h.left)) {
+            h = rotateLeft(h);
+        }
+        if (isRed(h.left) && isRed(h.left.left)) {
+            h = rotateRight(h);
+        }
+        if (isRed(h.left) && isRed(h.right)) {
+            flipColors(h);
+        }
+        return h;
     }
-    void updateInsertNode(Node node, Node temp) {
-        node.color = RED;
-        boolean isDuty = true;
-        while (isDuty) {
-            if (node.key < temp.key) {
-                if (temp.left == nil) {
-                    temp.left = node;
-                    node.parent = temp;
-                    isDuty = false;
-                }
-                else {
-                    temp = temp.left;
-                }
-            } else  {
-                if (temp.right == nil) {
-                    temp.right = node;
-                    node.parent = temp;
-                    isDuty = false;
-                }
-                else {
-                    temp = temp.right;
-                }
+    Node rotateLeft(Node h) {
+        Node x = h.right;
+        h.right = x.left;
+        x.left = h;
+        x.color = h.color;
+        h.color = RED;
+        return x;
+    }
+    Node rotateRight(Node h) {
+        Node x = h.left;
+        h.left = x.right;
+        x.right = h;
+        x.color = h.color;
+        h.color = RED;
+        return x;
+    }
+    List<Integer> getListElement(Node node) {
+        List<Integer> res = new ArrayList<>();
+        if (node == null)
+            return res;
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node tempNode = queue.poll();
+            res.add(tempNode.value);
+            if (tempNode.left != null && tempNode.left.value != -1) {
+                queue.add(tempNode.left);
+            }
+            if (tempNode.right != null && tempNode.right.value != -1) {
+                queue.add(tempNode.right);
             }
         }
+        return res;
     }
 
-    public void fixTree(Node node) {
-        while (node.parent.color == RED) {
-            Node uncle;
-            if (node.parent == node.parent.parent.left) {
-                uncle = node.parent.parent.right;
-                boolean boolExpression = true;
-                if (firstCheckUncle(uncle)) {
-                    node.parent.color = BLACK;
-                    uncle.color = BLACK;
-                    node.parent.parent.color = RED;
-                    node = node.parent.parent;
-                    boolExpression = false;
-                } else if (node == node.parent.right) {
-                    node = node.parent;
-                    rotateLeft(node);
-                }
-                node = fixRotateRight(boolExpression, node);
-            } else if(node.parent.parent.left != null) {
-                uncle = node.parent.parent.left;
-                boolean boolExpression = true;
-                if (firstCheckUncle(uncle)) {
-                    node.parent.color = BLACK;
-                    uncle.color = BLACK;
-                    node.parent.parent.color = RED;
-                    node = node.parent.parent;
-                    boolExpression = false;
-                }
-                if (node == node.parent.left) {
-                    node = node.parent;
-                    rotateRight(node);
-                }
-                node = fixRotateLeft(boolExpression, node);
-            }
-            else return;
-        }
-        parent.color = BLACK;
-    }
-
-    boolean firstCheckUncle(Node uncle) {
-        return uncle != nil && uncle.color == RED;
-    }
-
-    Node fixRotateLeft(boolean boolExpression, Node node) {
-        if (boolExpression) {
-            node.parent.color = BLACK;
-            node.parent.parent.color = RED;
-            rotateLeft(node.parent.parent);
-        }
-        return node;
-    }
-
-    Node fixRotateRight(boolean boolExpression, Node node) {
-        if (boolExpression) {
-            node.parent.color = BLACK;
-            node.parent.parent.color = RED;
-            rotateRight(node.parent.parent);
-        }
-        return node;
-    }
-    void rotateLeft(Node node) {
-        if (node.parent != nil) {
-            if (node == node.parent.left) {
-                node.parent.left = node.right;
-            } else {
-                node.parent.right = node.right;
-            }
-            node.right.parent = node.parent;
-            node.parent = node.right;
-            if (node.right.left != nil) {
-                node.right.left.parent = node;
-            }
-            node.right = node.right.left;
-            node.parent.left = node;
-        } else {
-            Node right = parent.right;
-            parent.right = right.left;
-            right.left.parent = parent;
-            parent.parent = right;
-            right.left = parent;
-            right.parent = nil;
-            parent = right;
-        }
-    }
-
-    void rotateRight(Node node) {
-        if (node.parent != nil) {
-            if (node == node.parent.left) {
-                node.parent.left = node.left;
-            } else {
-                node.parent.right = node.left;
-            }
-
-            node.left.parent = node.parent;
-            node.parent = node.left;
-            if (node.left.right != nil) {
-                node.left.right.parent = node;
-            }
-            node.left = node.left.right;
-            node.parent.right = node;
-        } else {
-            Node left = parent.left;
-            parent.left = parent.left.right;
-            left.right.parent = parent;
-            parent.parent = left;
-            left.right = parent;
-            left.parent = nil;
-            parent = left;
-        }
-    }
-    public static void printTree(Node node) {
-        Deque<Node> globalStack = new LinkedList<>();
-        globalStack.push(node);
-        int gaps = 32;
-        boolean isRowEmpty = false;
-        String separator = "-----------------------------------------------------------------";
-        System.out.println(separator);
-        while (!isRowEmpty) {
-            Deque<Node> localStack = new LinkedList<>();
-            isRowEmpty = true;
-            for (int j = 0; j < gaps; j++)
-                System.out.print(' ');
-            while (!globalStack.isEmpty()) {
-                Node temp = globalStack.pop();
-                if (temp != null) {
-                    if (temp.key == -1) {
-                        System.out.print("__");
-                    } else {
-                        System.out.print(temp.key);
-                    }
-                    localStack.push(temp.left);
-                    localStack.push(temp.right);
-                    isRowEmpty = !(temp.left != null || temp.right != null);
-                } else {
-                    System.out.print("__");
-                    localStack.push(null);
-                    localStack.push(null);
-                }
-                for (int j = 0; j < gaps * 2 - 2; j++)
-                    System.out.print(' ');
-            }
-            System.out.println();
-            gaps /= 2;
-            while (!localStack.isEmpty())
-                globalStack.push(localStack.pop());
-        }
-        System.out.println(separator);
-    }
     double getPercentageRedElementsRedBlackTree(Node node) {
         Pair number = getNumberDifferentColor(node);
         if(number.sum() == 0) {
@@ -227,22 +109,22 @@ public class RedBlackTree {
     }
     Pair getNumberDifferentColor(Node node) {
         Pair number = new Pair(0,0);
-        if(node == nil) {
+        if(node == null) {
             return number;
         }
         else {
             number.addNumber(getPairNumberColor(node));
-            if(node.left != nil) {
+            if(node.left != null) {
                 number.addNumber(getNumberDifferentColor(node.left));
             }
-            if(node.right != nil) {
+            if(node.right != null) {
                 number.addNumber(getNumberDifferentColor(node.right));
             }
         }
         return number;
     }
     Pair getPairNumberColor(Node node) {
-        if(node.isRed()) {
+        if(node.color == RED) {
             return new Pair(1,0);
         }
         else {

@@ -37,3 +37,4 @@
 | | [Упражнение 5.3.26](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_26) | 1.0 ч.| 0.7 ч.
 | | [Упражнение 5.3.37](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_37) | 1.25 ч.| 1.0 ч.
 | | [Упражнение 5.3.39](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_39) | 1.5 ч.| 1.7 ч.
+
