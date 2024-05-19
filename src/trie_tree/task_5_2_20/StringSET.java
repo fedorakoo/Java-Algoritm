@@ -14,9 +14,11 @@ public class StringSET {
             this.value = value;
         }
     }
-    private StringSET.TrieNode root;
+    private TrieNode root;
+    private int number;
     StringSET() {
         root = new StringSET.TrieNode('\0', false);
+        number = 0;
     }
     public void add(String key) {
         StringSET.TrieNode place = root;
@@ -28,6 +30,7 @@ public class StringSET {
                 if (place.children.get(Character.valueOf(key.charAt(i))) == null) {
                     if (isWord) {
                         System.out.println("Элемент успешно добавлен");
+                        number++;
                     }
                     place.children.put(Character.valueOf(key.charAt(i)), new StringSET.TrieNode(Character.valueOf(key.charAt(i)), isWord));
                 }
@@ -55,6 +58,7 @@ public class StringSET {
             nonEmptyNode.children.remove(nonEmptyChar);
         }
         System.out.println("Элемент успешно удален");
+        number--;
     }
 
     public boolean contains(String key) {
@@ -69,9 +73,9 @@ public class StringSET {
         return place.isKey;
     }
     public boolean isEmpty() {
-        return root.children.isEmpty();
+        return (number == 0);
     }
-    public int size() {
+    public int countWords() {
         return countWords(root);
     }
     private int countWords(StringSET.TrieNode node) {
