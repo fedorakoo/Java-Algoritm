@@ -1,4 +1,4 @@
-package trie_tree.task_5_2_15;
+package trie_tree.task_5_2_14;
 
 import java.util.List;
 import java.util.TreeSet;

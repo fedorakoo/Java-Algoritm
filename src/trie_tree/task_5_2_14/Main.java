@@ -1,11 +1,11 @@
-package trie_tree.task_5_2_15;
+package trie_tree.task_5_2_14;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Условие задания: ");
+        System.out.println("Условие задания: Напишите клиент TST.java, который выводит текст из стандартного ввода и подсчитывает в нем количество уникальных подстрок длиной L. Например, входной текст cgcgggcgcg содержит пять уникальных подстрок длиной 3: cgc, gcg, cgg, ggg и ggc.");
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
         TST tree = new TST();
