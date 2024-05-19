@@ -33,3 +33,8 @@
 | | [Упражнение 5.1.14](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_14) | 1.0 ч.| 0.8 ч.
 | | [Упражнение 5.1.19](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_19) | 1.25 ч.| 1.0 ч.
 | | [Упражнение 5.1.20](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_20) | 1.25 ч.| 1.0 ч.
+**Поиск подстрок** | [Упражнение 5.3.6](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_6) | 1.25 ч.| 0.8 ч.
+| | [Упражнение 5.3.26](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_26) | 1.0 ч.| 0.7 ч.
+| | [Упражнение 5.3.37](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_37) | 1.25 ч.| 1.0 ч.
+| | [Упражнение 5.3.39](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_39) | 1.5 ч.| 1.7 ч.
+
