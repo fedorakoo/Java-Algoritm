@@ -6,7 +6,7 @@ import static binary_search_tree.input.Input.inputIntLimit;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Условие задания: ");
+        System.out.println("Условие задания: напишите нерекурсивные версии реализации TrieST и ТТП.");
         Scanner in = new Scanner(System.in);
         TrieST treeST = new TrieST();
         TST treeTST = new TST();

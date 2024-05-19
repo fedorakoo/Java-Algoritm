@@ -14,17 +14,21 @@ public class TrieST {
             this.value = value;
         }
     }
+
     private TrieNode root;
     private int number;
+
     TrieST() {
         root = new TrieNode('\0', false);
         number = 0;
     }
+
     public void add(String key) {
         TrieNode place = root;
         if (contains(key)) {
             System.out.println("Элемент с заданным ключем уже существует");
-        } else {
+        }
+        else {
             for (int i = 0; i < key.length(); i++) {
                 boolean isWord = (i == key.length() - 1);
                 if (place.children.get(Character.valueOf(key.charAt(i))) == null) {
@@ -38,6 +42,7 @@ public class TrieST {
             }
         }
     }
+
     public void delete(String key){
         TrieNode place = root;
         TrieNode nonEmptyNode = place;
@@ -73,6 +78,7 @@ public class TrieST {
         }
         return place.isKey;
     }
+
     public boolean isEmpty() {
         return (number == 0);
     }
@@ -84,6 +90,7 @@ public class TrieST {
     public String toString() {
         return toString(root, "");
     }
+
     private String toString(TrieNode node, String line)  {
         StringBuilder bld = new StringBuilder();
         if (node.isKey) {

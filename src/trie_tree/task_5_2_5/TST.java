@@ -101,6 +101,7 @@ public class TST {
     public String toString() {
         return toString(root, "");
     }
+
     private String toString(Node node, String line)  {
         StringBuilder bld = new StringBuilder();
         if(node != null) {
