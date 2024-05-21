@@ -27,14 +27,15 @@ public class StringSET {
         } else {
             for (int i = 0; i < key.length(); i++) {
                 boolean isWord = (i == key.length() - 1);
-                if (place.children.get(Character.valueOf(key.charAt(i))) == null) {
-                    if (isWord) {
+                place.children.putIfAbsent(Character.valueOf(key.charAt(i)), new TrieNode(Character.valueOf(key.charAt(i)), false));
+                place = place.children.get(Character.valueOf(key.charAt(i)));
+                if (isWord) {
+                    if (!place.isKey) {
                         number++;
                         System.out.println("Элемент успешно добавлен");
                     }
-                    place.children.put(Character.valueOf(key.charAt(i)), new TrieNode(Character.valueOf(key.charAt(i)), isWord));
+                    place.isKey = true;
                 }
-                place = place.children.get(Character.valueOf(key.charAt(i)));
             }
         }
     }
