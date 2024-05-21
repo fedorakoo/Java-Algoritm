@@ -21,20 +21,21 @@ public class StringSET {
         number = 0;
     }
     public void add(String key) {
-        StringSET.TrieNode place = root;
+        TrieNode place = root;
         if (contains(key)) {
             System.out.println("Элемент с заданным ключем уже существует");
         } else {
             for (int i = 0; i < key.length(); i++) {
                 boolean isWord = (i == key.length() - 1);
-                if (place.children.get(Character.valueOf(key.charAt(i))) == null) {
-                    if (isWord) {
-                        System.out.println("Элемент успешно добавлен");
-                        number++;
-                    }
-                    place.children.put(Character.valueOf(key.charAt(i)), new StringSET.TrieNode(Character.valueOf(key.charAt(i)), isWord));
-                }
+                place.children.putIfAbsent(Character.valueOf(key.charAt(i)), new TrieNode(Character.valueOf(key.charAt(i)), false));
                 place = place.children.get(Character.valueOf(key.charAt(i)));
+                if (isWord) {
+                    if (!place.isKey) {
+                        number++;
+                        System.out.println("Элемент успешно добавлен");
+                    }
+                    place.isKey = true;
+                }
             }
         }
     }
