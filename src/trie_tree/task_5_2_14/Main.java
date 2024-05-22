@@ -24,7 +24,7 @@ public class Main {
                 result.add(str);
             }
         }
-        if (result.size() == 0) {
+        if (result.isEmpty()) {
             System.out.println("Данных подстрок нет");
         } else {
             System.out.print("Значения подстрок: ");
