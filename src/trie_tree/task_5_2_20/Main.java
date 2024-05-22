@@ -55,10 +55,10 @@ public class Main {
                     }
                     break;
                 }
-                case 7: {
+                case 6: {
                     System.out.print("Введите значение строки: ");
                     String line = in.nextLine();
-                    if(tree.countainPrefix(line)) {
+                    if(tree.containsPrefix(line)) {
                         System.out.println("Множество содержит строку с введеной строкой");
                     }
                     else {

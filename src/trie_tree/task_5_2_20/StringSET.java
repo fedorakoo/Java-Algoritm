@@ -102,7 +102,7 @@ public class StringSET {
         }
         return bld.toString();
     }
-    public boolean countainPrefix(String key) {
+    public boolean containsPrefix(String key) {
         TrieNode place = root;
         for (int i = 0; i < key.length(); i++) {
             char currentChar = key.charAt(i);
