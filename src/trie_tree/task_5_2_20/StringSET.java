@@ -49,14 +49,15 @@ public class StringSET {
                 nonEmptyNode = place;
                 nonEmptyChar = currentChar;
                 place = place.children.get(currentChar);
-            } else {
-                System.out.println("Элемент с заданным ключем не найден");
-                return;
             }
         }
         place.isKey = false;
         if (place.children.isEmpty() && !place.isKey) {
             nonEmptyNode.children.remove(nonEmptyChar);
+        }
+        else {
+            System.out.println("Элемент с заданным ключем не найден");
+            return;
         }
         System.out.println("Элемент успешно удален");
         number--;
