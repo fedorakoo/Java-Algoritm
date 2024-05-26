@@ -59,8 +59,15 @@ public class NFA {
                 char regexpChar = regexp.charAt(v);
                 if (regexpChar == currentChar || regexpChar == '.')
                     match.add(v + 1);
-                else if (regexpChar == '[' && i < size - 2 && regexp.charAt(v + 2) == currentChar) {
-                    match.add(v + 3);
+                else if (regexpChar == '[') {
+                    int j = v;
+                    while (regexp.charAt(j) != ']') {
+                        if (regexp.charAt(j) == currentChar) {
+                            match.add(v + 1);
+                            break;
+                        }
+                        j++;
+                    }
                 }
             }
             if (match.isEmpty()) {
