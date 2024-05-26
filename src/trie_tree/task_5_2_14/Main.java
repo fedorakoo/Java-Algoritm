@@ -3,6 +3,7 @@ package trie_tree.task_5_2_14;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import static using_sorts.task_2_5_13.Input.inputInt;
 
@@ -17,7 +18,7 @@ public class Main {
         System.out.print("Введите количество символов в подстроке: ");
         length = inputInt();
         tree.put(line);
-        List<String> set = tree.getSubstrings();
+        Set<String> set = tree.getSubstrings();
         List<String> result = new ArrayList<>();
         for (String str : set) {
             if (str.length() == length) {

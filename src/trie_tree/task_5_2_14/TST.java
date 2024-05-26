@@ -1,10 +1,12 @@
 package trie_tree.task_5_2_14;
 
-import java.util.List;
 import java.util.TreeSet;
 import java.util.Set;
 
 public class TST {
+    public TST() {
+        // obviously empty constructor for fixing errors
+    }
     private Node root;
     private class Node {
         char symbol;
@@ -35,7 +37,7 @@ public class TST {
         }
         return node;
     }
-    List<String> getSubstrings() {
+    Set<String> getSubstrings() {
         Set<String> myTreeSet = new TreeSet<>();
         Node temp = root;
         myTreeSet.addAll(getSubstrings(temp, ""));
@@ -53,7 +55,7 @@ public class TST {
             temp = temp.mid;
             myTreeSet.addAll(getSubstrings(temp, ""));
         }
-        return myTreeSet.stream().sorted().toList();
+        return myTreeSet;
     }
     Set<String> getSubstrings(Node node, String line) {
         Set<String> myTreeSet = new TreeSet<>();
