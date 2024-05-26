@@ -19,59 +19,32 @@ public class NFA {
         graph = new Digraph(size + 1);
         for (int i = 0; i < size; i++) {
             int lp = i;
-            if (regexp.charAt(i) == '(' || regexp.charAt(i) == '|')
+            if (regexp.charAt(i) == '(' || regexp.charAt(i) == '|') {
                 ops.push(i);
-            else if (regexp.charAt(i) == ')') {
+            } else if (regexp.charAt(i) == ')') {
                 int or = ops.pop();
-
                 if (regexp.charAt(or) == '|') {
                     lp = ops.pop();
                     graph.addEdge(lp, or + 1);
                     graph.addEdge(or, i);
-                } else if (regexp.charAt(or) == '(')
+                } else if (regexp.charAt(or) == '(') {
                     lp = or;
-                else assert false;
+                } else {
+                    assert false;
+                }
             }
 
             if (i < size - 1 && regexp.charAt(i + 1) == '*') {
                 graph.addEdge(lp, i + 1);
                 graph.addEdge(i + 1, lp);
             }
-            if (regexp.charAt(i) == '(' || regexp.charAt(i) == '*' || regexp.charAt(i) == ')')
+            if (regexp.charAt(i) == '(' || regexp.charAt(i) == '*' || regexp.charAt(i) == ')') {
                 graph.addEdge(i, i + 1);
-        }
-        if (ops.size() != 0)
-            throw new IllegalArgumentException("Invalid regular expression");
-    }
-
-    public boolean recognizes(String txt) {
-        DirectedDFS dfs = new DirectedDFS(graph, 0);
-        Bag<Integer> pc = new Bag<>();
-        for (int v = 0; v < graph.V(); v++)
-            if (dfs.marked(v)) pc.add(v);
-
-        for (int i = 0; i < txt.length(); i++) {
-            if (txt.charAt(i) == '*' || txt.charAt(i) == '|' || txt.charAt(i) == '(' || txt.charAt(i) == ')')
-                throw new IllegalArgumentException("text contains the metacharacter '" + txt.charAt(i) + "'");
-
-            Bag<Integer> match = new Bag<>();
-            for (int v : pc) {
-                if (v == size) continue;
-                if ((regexp.charAt(v) == txt.charAt(i)) || regexp.charAt(v) == '.')
-                    match.add(v + 1);
             }
-            if (match.isEmpty()) continue;
-
-            dfs = new DirectedDFS(graph, match);
-            pc = new Bag<>();
-            for (int v = 0; v < graph.V(); v++)
-                if (dfs.marked(v)) pc.add(v);
-            if (pc.size() == 0) return false;
         }
-
-        for (int v : pc)
-            if (v == size) return true;
-        return false;
+        if (ops.size() != 0) {
+            throw new IllegalArgumentException("Invalid regular expression");
+        }
     }
 
     public boolean recognizesAnyFromSet(Set<String> stringSet) {
@@ -86,7 +59,7 @@ public class NFA {
             if (t == size) {
                 return true;
             }
-            String s = regexp.substring(t, t+1);
+            String s = regexp.substring(t, t + 1);
             if (stringSet.contains(s) || s.equals(".")) {
                 dfs = new DirectedDFS(graph, t + 1);
                 for (int nextV = 0; nextV < graph.V(); nextV++) {
