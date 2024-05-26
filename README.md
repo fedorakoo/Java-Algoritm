@@ -33,6 +33,10 @@
 | | [Упражнение 5.1.14](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_14) | 1.0 ч.| 0.8 ч.
 | | [Упражнение 5.1.19](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_19) | 1.25 ч.| 1.0 ч.
 | | [Упражнение 5.1.20](https://github.com/fedorakoo/Java-Algoritm/tree/string_sorts/src/string_sorts/task_5_1_20) | 1.25 ч.| 1.0 ч.
+**Trie-деревья** | [Упражнение 5.2.5](https://github.com/fedorakoo/Java-Algoritm/tree/trie_tree/src/trie_tree/task_5_2_5) | 1.25 ч.| 1.5 ч.
+| | [Упражнение 5.2.6](https://github.com/fedorakoo/Java-Algoritm/tree/trie_tree/src/trie_tree/task_5_2_6) | 1.25 ч.| 1.3 ч.
+| | [Упражнение 5.2.14](https://github.com/fedorakoo/Java-Algoritm/tree/trie_tree/src/trie_tree/task_5_2_14) | 1.25 ч.| 1.0 ч.
+| | [Упражнение 5.2.20](https://github.com/fedorakoo/Java-Algoritm/blob/trie_tree/src/trie_tree/task_5_2_20) | 1.0 ч.| 0.8 ч.
 **Поиск подстрок** | [Упражнение 5.3.6](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_6) | 1.25 ч.| 0.8 ч.
 | | [Упражнение 5.3.26](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_26) | 1.0 ч.| 0.7 ч.
 | | [Упражнение 5.3.37](https://github.com/fedorakoo/Java-Algoritm/tree/substring_search/src/substring_search/task_5_3_37) | 1.25 ч.| 1.0 ч.
