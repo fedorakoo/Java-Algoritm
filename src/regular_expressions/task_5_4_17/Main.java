@@ -12,10 +12,9 @@ public class Main {
         System.out.print("Введите значение строки, необходимой для распознавания выражения: ");
         String line = in.nextLine();
         boolean result = nfa.recognizes(line);
-        if(result) {
+        if (result) {
             System.out.println("Введенная строка соответствует введенному NFA");
-        }
-        else {
+        } else {
             System.out.println("Введенная строка не соответствует введенному NFA");
         }
         System.out.println("Спасибо за внимание!");
