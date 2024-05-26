@@ -1,7 +1,3 @@
-/*
-
-System.out.println("NFA принимает хотя бы один символ из множества: " + accepts);
-*/
 package regular_expressions.task_5_4_19;
 
 import java.util.HashSet;
@@ -17,20 +13,20 @@ public class Main {
         System.out.print("Введите значение регулярного выражения: ");
         String regexp = in.nextLine();
         NFA nfa = new NFA(regexp);
-        System.out.print("Введите значение количества символов: ");
+        System.out.print("Введите значение количества элементов: ");
         int number = inputInt();
-        Set<Character> set = new HashSet<>();
+        Set<String> set = new HashSet<>();
         while(set.size() < number) {
-            System.out.print("Введите символ: ");
-            char ch = in.next().charAt(0);
+            System.out.print("Введите элемент: ");
+            String ch = in.next();
             set.add(ch);
         }
         boolean accepts = nfa.recognizesAnyFromSet(set);
         if(accepts) {
-            System.out.println("NFA принимает по крайней мере один символ из множества.");
+            System.out.println("NFA принимает по крайней мере один элемент из множества.");
         }
         else {
-            System.out.println("NFA не принимает ни одного символа из множества.");
+            System.out.println("NFA не принимает ни одного элемента из множества.");
         }
         System.out.println("Спасибо за внимание!");
     }

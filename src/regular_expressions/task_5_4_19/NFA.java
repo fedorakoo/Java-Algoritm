@@ -74,7 +74,7 @@ public class NFA {
         return false;
     }
 
-    public boolean recognizesAnyFromSet(Set<Character> charSet) {
+    public boolean recognizesAnyFromSet(Set<String> stringSet) {
         DirectedDFS dfs = new DirectedDFS(graph, 0);
         Bag<Integer> bag = new Bag<>();
         for (int i = 0; i < graph.V(); i++) {
@@ -86,8 +86,8 @@ public class NFA {
             if (t == size) {
                 return true;
             }
-            char c = regexp.charAt(t);
-            if (charSet.contains(c) || c == '.') {
+            String s = regexp.substring(t, t+1);
+            if (stringSet.contains(s) || s.equals(".")) {
                 dfs = new DirectedDFS(graph, t + 1);
                 for (int nextV = 0; nextV < graph.V(); nextV++) {
                     if (dfs.marked(nextV)) {
@@ -98,4 +98,5 @@ public class NFA {
         }
         return !bag.isEmpty();
     }
+
 }
