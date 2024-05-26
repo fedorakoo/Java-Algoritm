@@ -37,7 +37,7 @@
 | | [Упражнение 5.2.6](https://github.com/fedorakoo/Java-Algoritm/tree/trie_tree/src/trie_tree/task_5_2_6) | 1.25 ч.| 1.3 ч.
 | | [Упражнение 5.2.14](https://github.com/fedorakoo/Java-Algoritm/tree/trie_tree/src/trie_tree/task_5_2_14) | 1.25 ч.| 1.0 ч.
 | | [Упражнение 5.2.20](https://github.com/fedorakoo/Java-Algoritm/blob/trie_tree/src/trie_tree/task_5_2_20) | 1.0 ч.| 0.8 ч.
-**Регулярные выражения** | [Упражнение 5.4.17](https://github.com/fedorakoo/Java-Algoritm/tree/regular_expressions/src/regular_expressions/task_5_4_17) | 1.75 ч.| 2.6 ч.
+**Регулярные выражения** | [Упражнение 5.4.17](https://github.com/fedorakoo/Java-Algoritm/tree/regular_expressions/src/regular_expressions/task_5_4_17) | 1.75 ч.| 2.2 ч.
 | | [Упражнение 5.4.18](https://github.com/fedorakoo/Java-Algoritm/tree/regular_expressions/src/regular_expressions/task_5_4_18) | 1.25 ч.| 1.2 ч.
 | | [Упражнение 5.4.19](https://github.com/fedorakoo/Java-Algoritm/tree/regular_expressions/src/regular_expressions/task_5_4_19) | 1.25 ч.| 1.0 ч.
 | | [Упражнение 5.4.21](https://github.com/fedorakoo/Java-Algoritm/tree/regular_expressions/src/regular_expressions/task_5_4_21) | 1.0 ч.| 1.0 ч.
